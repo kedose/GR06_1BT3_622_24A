@@ -21,7 +21,9 @@ public class CafeteriaController extends HttpServlet {
         menuItems.add(new MenuItem("Sánduche de Pollo", "$2.00"));
         menuItems.add(new MenuItem("Ensalada César", "$2.75"));
         menuItems.add(new MenuItem("Café Americano", "$1.00"));
-
+        //Aquiiiiiiii//
+        //////////////
+        
         // Pasar la lista de menú al JSP
         request.setAttribute("menuItems", menuItems);
         request.getRequestDispatcher("cafeteria.jsp").forward(request, response);

@@ -41,13 +41,15 @@
 
                 switch (tabName) {
                     case 'polibus':
-                        url = '/PaginaWebPoli/buses'; // URL para cargar las rutas
+                        url = '/PaginaWebPoli/polibus.jsp'; // URL para cargar las rutas
                         break;
                     case 'cafeteria':
                         url = '/PaginaWebPoli/cafeteria'; // URL para cargar la cafetería
+                        console.log("URL cargada: " + url);
                         break;
-                    case 'AEIS':
-                        url = '/PaginaWebPoli/cafeteria'; // URL para cargar Fepon
+                    case 'asociacion':
+                        url = '/PaginaWebPoli/asociacion.jsp'; // URL para cargar asociacion
+                        console.log("URL cargada: " + url);
                         break;
                     case 'comentarios':
                         url = '/PaginaWebPoli/comentarios'; // URL para cargar comentarios
@@ -93,7 +95,7 @@
                                     <a class="nav-link" href="javascript:void(0);" onclick="showTab('cafeteria')" type="button">Cafetería</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0);" onclick="showTab('AEIS')" type="button">AEIS</a>
+                                    <a class="nav-link" href="javascript:void(0);" onclick="showTab('asociacion')" type="button">Asociacion</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="javascript:void(0);" onclick="showTab('comentarios')" type="button">Comentarios</a>

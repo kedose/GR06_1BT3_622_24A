@@ -46,8 +46,8 @@
                     case 'cafeteria':
                         url = '/PaginaWebPoli/cafeteria'; // URL para cargar la cafetería
                         break;
-                    case 'fepon':
-                        url = '/PaginaWebPoli/fepon'; // URL para cargar Fepon
+                    case 'AEIS':
+                        url = '/PaginaWebPoli/cafeteria'; // URL para cargar Fepon
                         break;
                     case 'comentarios':
                         url = '/PaginaWebPoli/comentarios'; // URL para cargar comentarios
@@ -93,7 +93,7 @@
                                     <a class="nav-link" href="javascript:void(0);" onclick="showTab('cafeteria')" type="button">Cafetería</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0);" onclick="showTab('fepon')" type="button">Fepon</a>
+                                    <a class="nav-link" href="javascript:void(0);" onclick="showTab('AEIS')" type="button">AEIS</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="javascript:void(0);" onclick="showTab('comentarios')" type="button">Comentarios</a>

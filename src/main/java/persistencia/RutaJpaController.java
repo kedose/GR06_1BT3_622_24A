@@ -1,6 +1,6 @@
 package persistencia;
 
-import com.poliweb.Ruta;
+import com.poliweb.modelo.Ruta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -14,7 +14,7 @@ public class RutaJpaController implements Serializable {
     private EntityManagerFactory emf;
     private EntityManager em;
 
-    RutaJpaController() {
+    public RutaJpaController() {
         emf = Persistence.createEntityManagerFactory("EjemploJavaWebPU");
         em = emf.createEntityManager(); // Mantener la conexión abierta
     }

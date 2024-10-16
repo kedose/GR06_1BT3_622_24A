@@ -1,6 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.poliweb.Ruta" %>
+<%@ page import="com.poliweb.modelo.Ruta" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- Importamos JSTL -->
 
 <!DOCTYPE html>

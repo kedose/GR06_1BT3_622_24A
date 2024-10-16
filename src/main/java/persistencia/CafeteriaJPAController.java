@@ -1,6 +1,6 @@
 package persistencia;
 
-import com.poliweb.Cafeteria;
+import com.poliweb.modelo.Cafeteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

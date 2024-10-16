@@ -41,7 +41,7 @@
 
                 switch (tabName) {
                     case 'polibus':
-                        url = '/PaginaWebPoli/polibus.jsp'; // URL para cargar las rutas
+                        url = '/PaginaWebPoli/buses'; // URL para cargar las rutas
                         break;
                     case 'cafeteria':
                         url = '/PaginaWebPoli/cafeteria'; // URL para cargar la cafetería

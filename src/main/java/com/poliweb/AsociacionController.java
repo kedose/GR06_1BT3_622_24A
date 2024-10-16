@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/asociacion")
+@WebServlet("/asociaciones")
 public class AsociacionController extends HttpServlet {
 
     @Override
@@ -18,7 +18,6 @@ public class AsociacionController extends HttpServlet {
         // Crear la lista de asociaciones con sus datos
         List<Asociacion> asociaciones = new ArrayList<>();
 
-        // Asociación AEIO, E (Ing Electrica) - Sin datos detallados por ahora
         asociaciones.add(new Asociacion("AEIO", null, null, null, null));
         asociaciones.add(new Asociacion("E (Ing Electrica)", null, null, null, null));
         asociaciones.add(new Asociacion("AEE-ICEF", null, null, null, null));
@@ -43,7 +42,7 @@ public class AsociacionController extends HttpServlet {
 
         // Pasar la lista de asociaciones al JSP
         request.setAttribute("asociaciones", asociaciones);
-        request.getRequestDispatcher("asociacion.jsp").forward(request, response);
+        request.getRequestDispatcher("asociaciones.jsp").forward(request, response);
     }
 
     // Clase para representar los datos de cada asociación
@@ -62,7 +61,6 @@ public class AsociacionController extends HttpServlet {
             this.planesEstudiantiles = planesEstudiantiles;
         }
 
-        // Getters y setters
         public String getNombre() {
             return nombre;
         }

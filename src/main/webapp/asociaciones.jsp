@@ -81,6 +81,11 @@
                     <strong>Información de cuenta bancaria para depósitos:</strong>
                     <p><strong>Banco:</strong> Banco Pichincha</p>
                     <p><strong>Número de cuenta:</strong> 1234567890</p>
+
+                    <div id="qr-code-${item.nombre}" style="display: none;">
+                        <img src="./imagenes/OIP.jpeg" alt="Código QR para pago" width="150" height="150">
+                    </div>
+                    <h5>imagen</h5>
                 </div>
             </div>
         </c:forEach>
@@ -104,6 +109,9 @@
         const cuentaDiv = document.getElementById('cuenta-' + nombreAsociacion);
         if (cuentaDiv) {
             cuentaDiv.style.display = 'block';
+        }
+        if (qrCodeDiv) {
+            qrCodeDiv.style.display = 'block';
         }
     }
 </script>

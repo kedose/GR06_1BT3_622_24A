@@ -48,7 +48,7 @@
                         console.log("URL cargada: " + url);
                         break;
                     case 'asociacion':
-                        url = '/PaginaWebPoli/asociacion.jsp'; // URL para cargar asociacion
+                        url = '/PaginaWebPoli/asociaciones'; // URL para cargar asociacion
                         console.log("URL cargada: " + url);
                         break;
                     case 'comentarios':

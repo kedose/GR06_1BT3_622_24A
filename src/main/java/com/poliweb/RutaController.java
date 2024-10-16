@@ -11,20 +11,44 @@ import persistencia.ControladoraPersistencia;
 
 @WebServlet("/buses")
 public class RutaController extends HttpServlet {
-    private ControladoraPersistencia controladoraPersistencia = new ControladoraPersistencia();
+
+    // Dependencia inyectada a través del constructor (puedes usar un framework de inyección si es necesario)
+    private final ControladoraPersistencia controladoraPersistencia;
+
+    // Ruta y mensajes como constantes
+    private static final String RUTA_JSP = "polibus.jsp";
+    private static final String ERROR_CONSULTA = "Error en la consulta: ";
+
+    // Constructor
+    public RutaController() {
+        this.controladoraPersistencia = new ControladoraPersistencia();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Recuperar las rutas desde la base de datos
-            List<Ruta> rutas = controladoraPersistencia.obtenerTodasLasRutas();       
-            // Pasar las rutas al JSP
-            request.setAttribute("rutas", rutas);
-            request.getRequestDispatcher("polibus.jsp").forward(request, response);
+            List<Ruta> rutas = obtenerRutas();
+            pasarAtributosYDespachar(request, response, rutas);
         } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la consulta: " + e.getMessage());
+            manejarError(response, e);
         }
+    }
+
+    // Método separado para obtener rutas
+    private List<Ruta> obtenerRutas() throws Exception {
+        return controladoraPersistencia.obtenerTodasLasRutas();
+    }
+
+    // Método separado para pasar atributos y despachar la respuesta
+    private void pasarAtributosYDespachar(HttpServletRequest request, HttpServletResponse response, List<Ruta> rutas) throws ServletException, IOException {
+        request.setAttribute("rutas", rutas);
+        request.getRequestDispatcher(RUTA_JSP).forward(request, response);
+    }
+
+    // Método separado para manejo de errores
+    private void manejarError(HttpServletResponse response, Exception e) throws IOException {
+        e.printStackTrace();
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ERROR_CONSULTA + e.getMessage());
     }
 }
 

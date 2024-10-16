@@ -15,30 +15,38 @@ public class AsociacionController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Crear planes para AEIS
+        List<Asociacion.Plan> planesAEIS = new ArrayList<>();
+        planesAEIS.add(new Asociacion.Plan("Taller de programación", "Aprende los conceptos básicos de programación."));
+        planesAEIS.add(new Asociacion.Plan("Charlas sobre tecnología", "Charlas sobre las últimas tendencias tecnológicas."));
+        planesAEIS.add(new Asociacion.Plan("Apoyo académico", "Asesoría y tutorías para estudiantes de sistemas."));
+
+
         // Crear la lista de asociaciones con sus datos
         List<Asociacion> asociaciones = new ArrayList<>();
 
-        asociaciones.add(new Asociacion("AEIO", null, null, null, null));
-        asociaciones.add(new Asociacion("E (Ing Electrica)", null, null, null, null));
-        asociaciones.add(new Asociacion("AEE-ICEF", null, null, null, null));
-        asociaciones.add(new Asociacion("ESFOT", null, null, null, null));
-        asociaciones.add(new Asociacion("AGROINDUSTRIAL", null, null, null, null));
+        asociaciones.add(new Asociacion("AEIO", null, null, null, null, null));
+        asociaciones.add(new Asociacion("E (Ing Electrica)", null, null, null, null, null));
+        asociaciones.add(new Asociacion("AEE-ICEF", null, null, null, null, null));
+        asociaciones.add(new Asociacion("ESFOT", null, null, null, null, null));
+        asociaciones.add(new Asociacion("AGROINDUSTRIAL", null, null, null, null, null));
         asociaciones.add(new Asociacion(
                 "AEIS",
                 "La Asociación de Estudiantes de Ingeniería de Sistemas (AEIS) representa a los estudiantes de esta carrera.",
                 "contacto@aeis.epn.edu.ec",
                 "http://www.aeis.epn.edu.ec",
-                "Planes: Talleres de programación, charlas sobre tecnología y apoyo académico."
+                planesAEIS,
+                "Cuenta bancaria: Banco Pichincha, N° 1234567890"
         ));
 
         // Otras asociaciones sin detalles
-        asociaciones.add(new Asociacion("AEIE", null, null, null, null));
-        asociaciones.add(new Asociacion("ASO-MAT", null, null, null, null));
-        asociaciones.add(new Asociacion("AEIM", null, null, null, null));
-        asociaciones.add(new Asociacion("ING CIVIL", null, null, null, null));
-        asociaciones.add(new Asociacion("EFCA", null, null, null, null));
-        asociaciones.add(new Asociacion("ING AMBIENTAL", null, null, null, null));
-        asociaciones.add(new Asociacion("ING QUIMICA", null, null, null, null));
+        asociaciones.add(new Asociacion("AEIE", null, null, null, null, null));
+        asociaciones.add(new Asociacion("ASO-MAT", null, null, null, null, null));
+        asociaciones.add(new Asociacion("AEIM", null, null, null, null, null));
+        asociaciones.add(new Asociacion("ING CIVIL", null, null, null, null, null));
+        asociaciones.add(new Asociacion("EFCA", null, null, null, null, null));
+        asociaciones.add(new Asociacion("ING AMBIENTAL", null, null, null, null, null));
+        asociaciones.add(new Asociacion("ING QUIMICA", null, null, null, null, null));
 
         // Pasar la lista de asociaciones al JSP
         request.setAttribute("asociaciones", asociaciones);
@@ -51,14 +59,17 @@ public class AsociacionController extends HttpServlet {
         private String descripcion;
         private String email;
         private String sitioWeb;
-        private String planesEstudiantiles;
+        private List<Plan> planesEstudiantiles;
+        private String cuentaBancaria;
 
-        public Asociacion(String nombre, String descripcion, String email, String sitioWeb, String planesEstudiantiles) {
+        // Constructor y getters/setters actualizados
+        public Asociacion(String nombre, String descripcion, String email, String sitioWeb, List<Plan> planesEstudiantiles, String cuentaBancaria) {
             this.nombre = nombre;
             this.descripcion = descripcion;
             this.email = email;
             this.sitioWeb = sitioWeb;
             this.planesEstudiantiles = planesEstudiantiles;
+            this.cuentaBancaria = cuentaBancaria;
         }
 
         public String getNombre() {
@@ -93,12 +104,47 @@ public class AsociacionController extends HttpServlet {
             this.sitioWeb = sitioWeb;
         }
 
-        public String getPlanesEstudiantiles() {
+        public List<Plan> getPlanesEstudiantiles() {
             return planesEstudiantiles;
         }
 
-        public void setPlanesEstudiantiles(String planesEstudiantiles) {
+        public void setPlanesEstudiantiles(List<Plan> planesEstudiantiles) {
             this.planesEstudiantiles = planesEstudiantiles;
+        }
+
+        public String getCuentaBancaria() {
+            return cuentaBancaria;
+        }
+
+        public void setCuentaBancaria(String cuentaBancaria) {
+            this.cuentaBancaria = cuentaBancaria;
+        }
+
+        // Clase interna para representar cada plan
+        public static class Plan {
+            private String nombre;
+            private String descripcion;
+
+            public Plan(String nombre, String descripcion) {
+                this.nombre = nombre;
+                this.descripcion = descripcion;
+            }
+
+            public String getNombre() {
+                return nombre;
+            }
+
+            public void setNombre(String nombre) {
+                this.nombre = nombre;
+            }
+
+            public String getDescripcion() {
+                return descripcion;
+            }
+
+            public void setDescripcion(String descripcion) {
+                this.descripcion = descripcion;
+            }
         }
     }
 }

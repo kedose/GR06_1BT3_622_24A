@@ -48,8 +48,30 @@ public class AsociacionController extends HttpServlet {
         asociaciones.add(new Asociacion("ING AMBIENTAL", null, null, null, null, null));
         asociaciones.add(new Asociacion("ING QUIMICA", null, null, null, null, null));
 
-        // Pasar la lista de asociaciones al JSP
+        // Obtener la asociación seleccionada y la acción (mostrar planes o mostrar cuenta bancaria)
+        String asociacionSeleccionada = request.getParameter("asociacion");
+        String accion = request.getParameter("accion");
+
+        // Filtrar la asociación seleccionada si existe
+        Asociacion asociacionInfo = null;
+        if (asociacionSeleccionada != null) {
+            for (Asociacion asociacion : asociaciones) {
+                if (asociacion.getNombre().equals(asociacionSeleccionada)) {
+                    asociacionInfo = asociacion;
+                    break;
+                }
+            }
+        }
+
+        // Verificar si se debe mostrar la cuenta bancaria
+        boolean mostrarCuentaBancaria = "mostrarCuenta".equals(accion);
+        
+
+        // Pasar la lista de asociaciones, la asociación seleccionada y la bandera de la cuenta bancaria al JSP
         request.setAttribute("asociaciones", asociaciones);
+        request.setAttribute("asociacionSeleccionada", asociacionInfo);
+        request.setAttribute("mostrarCuentaBancaria", mostrarCuentaBancaria);
+
         request.getRequestDispatcher("asociaciones.jsp").forward(request, response);
     }
 
@@ -62,7 +84,7 @@ public class AsociacionController extends HttpServlet {
         private List<Plan> planesEstudiantiles;
         private String cuentaBancaria;
 
-        // Constructor y getters/setters actualizados
+        // Constructor
         public Asociacion(String nombre, String descripcion, String email, String sitioWeb, List<Plan> planesEstudiantiles, String cuentaBancaria) {
             this.nombre = nombre;
             this.descripcion = descripcion;
@@ -72,6 +94,7 @@ public class AsociacionController extends HttpServlet {
             this.cuentaBancaria = cuentaBancaria;
         }
 
+        // Getters y Setters
         public String getNombre() {
             return nombre;
         }
@@ -120,7 +143,7 @@ public class AsociacionController extends HttpServlet {
             this.cuentaBancaria = cuentaBancaria;
         }
 
-        // Clase interna para representar cada plan
+        // Clase interna Plan
         public static class Plan {
             private String nombre;
             private String descripcion;
@@ -147,4 +170,6 @@ public class AsociacionController extends HttpServlet {
             }
         }
     }
+
+
 }

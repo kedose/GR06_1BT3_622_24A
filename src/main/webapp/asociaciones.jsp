@@ -8,39 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asociaciones EPN</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .menu-horizontal {
-            overflow-x: auto;
-            white-space: nowrap;
-            margin-bottom: 20px;
-        }
-        .menu-horizontal .menu-item {
-            display: inline-block;
-            margin-right: 15px;
-        }
-        .menu-item button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .menu-item button:hover {
-            background-color: #0056b3;
-        }
-        .asociacion-info {
-            display: none;
-            margin-top: 20px;
-        }
-        .cuenta-bancaria {
-            display: none;
-            margin-top: 10px;
-            background-color: #f8f9fa;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-    </style>
 </head>
 <body>
 <div class="container my-4">
@@ -51,70 +18,51 @@
         <div class="menu-horizontal">
             <c:forEach var="item" items="${asociaciones}">
                 <div class="menu-item">
-                    <button onclick="showAsociacion('${item.nombre}')">${item.nombre}</button>
+                    <form method="get" action="asociaciones">
+                        <input type="hidden" name="asociacion" value="${item.nombre}" />
+                        <button type="submit" class="btn btn-primary">${item.nombre}</button>
+                    </form>
                 </div>
             </c:forEach>
         </div>
 
-        <!-- Información de las asociaciones (oculta por defecto) -->
-        <c:forEach var="item" items="${asociaciones}">
-            <div id="${item.nombre}" class="asociacion-info">
-                <h3>${item.nombre}</h3>
-                <c:if test="${item.descripcion != null}">
-                    <p><strong>Descripción:</strong> ${item.descripcion}</p>
+        <!-- Mostrar la información de la asociación seleccionada -->
+        <c:if test="${asociacionSeleccionada != null}">
+            <div class="asociacion-info mt-4">
+                <h3>${asociacionSeleccionada.nombre}</h3>
+                <c:if test="${asociacionSeleccionada.descripcion != null}">
+                    <p><strong>Descripción:</strong> ${asociacionSeleccionada.descripcion}</p>
                 </c:if>
 
-                <!-- Mostrar planes si existen -->
-                <c:if test="${item.planesEstudiantiles != null}">
+                <c:if test="${asociacionSeleccionada.planesEstudiantiles != null}">
                     <h4>Planes Estudiantiles:</h4>
                     <ul>
-                        <c:forEach var="plan" items="${item.planesEstudiantiles}">
+                        <c:forEach var="plan" items="${asociacionSeleccionada.planesEstudiantiles}">
                             <li>${plan.nombre}: ${plan.descripcion}
-                                <button onclick="showCuentaBancaria('${item.nombre}')">Comprar</button>
+                                <form method="get" action="asociaciones">
+                                    <input type="hidden" name="asociacion" value="${asociacionSeleccionada.nombre}" />
+                                    <input type="hidden" name="accion" value="mostrarCuenta" />
+                                    <button type="submit" class="btn btn-info">Comprar</button>
+                                </form>
                             </li>
                         </c:forEach>
                     </ul>
                 </c:if>
 
-                <!-- Información de cuenta bancaria (oculta por defecto) -->
-                <div id="cuenta-${item.nombre}" class="cuenta-bancaria">
-                    <strong>Información de cuenta bancaria para depósitos:</strong>
-                    <p><strong>Banco:</strong> Banco Pichincha</p>
-                    <p><strong>Número de cuenta:</strong> 1234567890</p>
-
-                    <div id="qr-code-${item.nombre}" style="display: none;">
-                        <img src="./imagenes/OIP.jpeg" alt="Código QR para pago" width="150" height="150">
+                <!-- Mostrar la cuenta bancaria si se seleccionó la opción "Comprar" -->
+                <c:if test="${mostrarCuentaBancaria}">
+                    <div class="cuenta-bancaria mt-4">
+                        <strong>Información de cuenta bancaria:</strong>
+                        <p>${asociacionSeleccionada.cuentaBancaria}</p>
                     </div>
-                    <h5>imagen</h5>
-                </div>
+                </c:if>
             </div>
-        </c:forEach>
+        </c:if>
     </div>
 </div>
 
-<script>
-    // Mostrar la información de la asociación seleccionada
-    function showAsociacion(nombreAsociacion) {
-        const asociacionesInfo = document.querySelectorAll('.asociacion-info');
-        asociacionesInfo.forEach(info => info.style.display = 'none');
 
-        const asociacionDiv = document.getElementById(nombreAsociacion);
-        if (asociacionDiv) {
-            asociacionDiv.style.display = 'block';
-        }
-    }
 
-    // Mostrar la cuenta bancaria cuando se selecciona "Comprar"
-    function showCuentaBancaria(nombreAsociacion) {
-        const cuentaDiv = document.getElementById('cuenta-' + nombreAsociacion);
-        if (cuentaDiv) {
-            cuentaDiv.style.display = 'block';
-        }
-        if (qrCodeDiv) {
-            qrCodeDiv.style.display = 'block';
-        }
-    }
-</script>
 
 <!-- jQuery y Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

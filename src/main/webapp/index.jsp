@@ -45,11 +45,9 @@
                         break;
                     case 'cafeteria':
                         url = '/PaginaWebPoli/cafeteria'; // URL para cargar la cafetería
-                        console.log("URL cargada: " + url);
                         break;
                     case 'asociacion':
                         url = '/PaginaWebPoli/asociaciones'; // URL para cargar asociacion
-                        console.log("URL cargada: " + url);
                         break;
                     case 'comentarios':
                         url = '/PaginaWebPoli/comentarios'; // URL para cargar comentarios

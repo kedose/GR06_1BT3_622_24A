@@ -49,23 +49,4 @@ public class CafeteriaJPAController implements Serializable {
         }
     }
 
-    public Cafeteria buscarCafeteriaPorId(Long id) {
-        return em.find(Cafeteria.class, id);
-    }
-
-    public void cerrar() {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-        if (emf != null && emf.isOpen()) {
-            emf.close();
-        }
-    }
-
-    public EntityManager getEntityManager() {
-        if (em == null || !em.isOpen()) {
-            em = emf.createEntityManager(); // Crear una nueva instancia si no está disponible o abierta
-        }
-        return em;
-    }
 }

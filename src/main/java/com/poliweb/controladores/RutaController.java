@@ -14,10 +14,7 @@ import java.util.List;
 @WebServlet("/buses")
 public class RutaController extends HttpServlet {
 
-    // Dependencia inyectada a través del constructor (puedes usar un framework de inyección si es necesario)
     private final RutaJpaController controladoraPersistencia;
-
-    // Ruta y mensajes como constantes
     private static final String RUTA_JSP = "polibus.jsp";
     private static final String ERROR_CONSULTA = "Error en la consulta: ";
 

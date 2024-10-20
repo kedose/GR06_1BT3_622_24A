@@ -1,5 +1,6 @@
 package com.poliweb.controladores;
 
+import com.poliweb.modelo.Comentario;
 import com.poliweb.modelo.Post;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,30 +20,33 @@ public class PublicarPostServlet extends HttpServlet {
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String mensaje = request.getParameter("mensaje");
-        System.out.println(mensaje);
 
         if (mensaje != null && !mensaje.isEmpty()) {
             HttpSession session = request.getSession();
-
-            // Obtener la lista de posts de la sesión o crear una nueva si no existe
             List<Post> posts = (List<Post>) session.getAttribute("posts");
             if (posts == null) {
                 posts = new ArrayList<>();
             }
 
-            // Crear un nuevo post
-            Post nuevoPost = new Post("Carlos Ramírez", mensaje, 0, 0);
-
-            // Añadir el nuevo post a la lista
-            posts.add(0, nuevoPost); // Añadir al inicio de la lista para que aparezca primero
-
-            // Guardar la lista de posts en la sesión
+            Post nuevoPost = new Post("Carlos Ramírez", mensaje, 0); // Crea el nuevo post
+            posts.add(0, nuevoPost); // Añadir al inicio de la lista
             session.setAttribute("posts", posts);
 
-            // Redirigir de nuevo a areasocial.jsp
-            response.sendRedirect("areasocial.jsp");
+            // Devolver el nuevo post como respuesta
+            response.setContentType("text/html");
+            response.getWriter().write("<div class='post'>"
+                    + "<p><strong>" + nuevoPost.getAutor() + "</strong></p>"
+                    + "<p>" + nuevoPost.getMensaje() + "</p>"
+                    + "<p><small><a href='#' class='toggle-comentarios' data-post-id='" + posts.indexOf(nuevoPost) + "'>Comentarios (0)</a></small></p>"
+                    + "<button class='btn btn-secondary btn-like' data-post-id='" + posts.indexOf(nuevoPost) + "'>Dar Like</button>"
+                    + "<p class='like-count'>" + nuevoPost.getLikes() + " Me gusta</p>"
+                    + "<div id='comentarios-" + posts.indexOf(nuevoPost) + "' style='display:none;'></div>"
+                    + "</div>");
+
         } else {
             response.sendRedirect("areasocial.jsp?error=1");
         }
     }
+
 }
+

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.poliweb.modelo.Ruta" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- Importamos JSTL -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -10,17 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polibus - Portal Estudiantil EPN</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .bg-white {
-            background-color: #ffffff;
-        }
-        .rounded-lg {
-            border-radius: 0.5rem;
-        }
-        .shadow-lg {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-        }
-    </style>
 </head>
 <body>
     <div class="container my-4">

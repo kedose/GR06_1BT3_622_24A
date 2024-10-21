@@ -13,15 +13,17 @@ import java.util.List;
 @WebServlet("/asociaciones")
 public class AsociacionController extends HttpServlet {
 
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // Crear planes para AEIS
+        List<Asociacion.Plan> planesAEIS = new ArrayList<>();
         planesAEIS.add(new Asociacion.Plan("Taller de programación", "Aprende los conceptos básicos de programación."));
         planesAEIS.add(new Asociacion.Plan("Charlas sobre tecnología", "Charlas sobre las últimas tendencias tecnológicas."));
         planesAEIS.add(new Asociacion.Plan("Apoyo académico", "Asesoría y tutorías para estudiantes de sistemas."));
 
+
+        // Crear la lista de asociaciones con sus datos
+        List<Asociacion> asociaciones = new ArrayList<>();
 
         asociaciones.add(new Asociacion("AEIO", null, null, null, null, null));
         asociaciones.add(new Asociacion("E (Ing Electrica)", null, null, null, null, null));
@@ -72,33 +74,6 @@ public class AsociacionController extends HttpServlet {
 
         request.getRequestDispatcher("asociaciones.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String asociacionSeleccionada = request.getParameter("asociacion");
-
-        // Obtener los datos del nuevo plan desde el formulario
-        String nombrePlan = request.getParameter("nombrePlan");
-        String descripcionPlan = request.getParameter("descripcionPlan");
-
-        // Encontrar la asociación seleccionada y agregar el nuevo plan
-        for (Asociacion asociacion : asociaciones) {
-            if (asociacion.getNombre().equals(asociacionSeleccionada)) {
-                Asociacion.Plan nuevoPlan = new Asociacion.Plan(nombrePlan, descripcionPlan);
-                asociacion.getPlanesEstudiantiles().add(nuevoPlan);
-                break;
-            }
-        }
-
-        // Redirigir a la misma página para mostrar los cambios
-        response.sendRedirect("asociaciones");
-    }
-
-
-    // Crear la lista de asociaciones con sus datos
-    List<Asociacion> asociaciones = new ArrayList<>();
-    // Crear planes para AEIS
-    List<Asociacion.Plan> planesAEIS = new ArrayList<>();
 
     // Clase para representar los datos de cada asociación
     public static class Asociacion {

@@ -32,12 +32,13 @@ public class RutaControllerTest {
     @Mock
     private RequestDispatcher requestDispatcher;
 
-    @InjectMocks
     private RutaController rutaController;
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this); // Inicializar los mocks y controladores inyectados
+        MockitoAnnotations.openMocks(this);
+        // Inyectar el mock en el controlador
+        rutaController = new RutaController(mockRutaJpaController);
     }
 
     @Test
@@ -66,8 +67,10 @@ public class RutaControllerTest {
     public void testDoGetConError() throws Exception {
         // Simular una excepción en el acceso a la base de datos
         when(mockRutaJpaController.obtenerTodasLasRutas()).thenThrow(new RuntimeException("Error en la BD"));
+        // Llamar al método doGet
+        rutaController.doGet(request, response);
         // Verificar que se envió el error correctamente
-        verify(response).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la consulta: Error en la BD");
+        verify(response).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la consulta");
     }
 
 

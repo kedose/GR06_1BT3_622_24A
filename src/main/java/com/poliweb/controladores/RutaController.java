@@ -7,6 +7,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import persistencia.RutaJpaController;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,12 +24,13 @@ public class RutaController extends HttpServlet {
 
     // Constructor
     public RutaController() {
-        this.controladoraPersistencia = new RutaJpaController();
+        this(new RutaJpaController());
     }
 
     public RutaController(RutaJpaController controladoraPersistencia) {
         this.controladoraPersistencia = controladoraPersistencia;
     }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,8 +45,23 @@ public class RutaController extends HttpServlet {
 
     private void manejarError(HttpServletResponse response, Exception e) throws IOException {
         String errorMessage = "Error en la consulta: " + e.getMessage();
-        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, errorMessage);
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la consulta");
+
+        // Guardar el error en un archivo
+        guardarErrorEnArchivo(errorMessage);
     }
+
+    private void guardarErrorEnArchivo(String errorMessage) {
+        String rutaArchivo = "errores.txt"; // Cambia esto a la ruta deseada
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
+            writer.write(errorMessage);
+            writer.newLine(); // Agregar una nueva línea después del mensaje
+        } catch (IOException ioException) {
+            ioException.printStackTrace(); // O maneja el error según sea necesario
+        }
+    }
+
 
 
     // Método separado para obtener rutas

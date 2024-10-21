@@ -1,9 +1,0 @@
-com\poliweb\resources\JakartaEE10Resource.class
-com\poliweb\Controladora.class
-persistencia\RutaJpaController.class
-com\poliweb\Ruta.class
-persistencia\exceptions\NonexistentEntityException.class
-persistencia\exceptions\PreexistingEntityException.class
-com\poliweb\RutaController.class
-persistencia\ControladoraPersistencia.class
-persistencia\exceptions\IllegalOrphanException.class

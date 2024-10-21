@@ -1,0 +1,2 @@
+Error en la consulta: Error en la BD
+

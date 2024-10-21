@@ -64,12 +64,10 @@ public class RutaController extends HttpServlet {
 
 
 
-    // Método separado para obtener rutas
     private List<Ruta> obtenerRutas() throws Exception {
         return controladoraPersistencia.obtenerTodasLasRutas();
     }
 
-    // Método separado para pasar atributos y despachar la respuesta
     private void pasarAtributosYDespachar(HttpServletRequest request, HttpServletResponse response, List<Ruta> rutas) throws ServletException, IOException {
         request.setAttribute("rutas", rutas);
         request.getRequestDispatcher(RUTA_JSP).forward(request, response);

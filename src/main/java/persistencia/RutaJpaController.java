@@ -7,16 +7,26 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RutaJpaController implements Serializable {
 
     private static RutaJpaController instance;
     private EntityManagerFactory emf;
-    private EntityManager em;
+    private static final Logger logger = Logger.getLogger(RutaJpaController.class.getName());
+
+    static {
+        Logger logger = Logger.getLogger(RutaJpaController.class.getName());
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.ALL);
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.ALL);
+    }
 
     public RutaJpaController() {
         emf = Persistence.createEntityManagerFactory("EjemploJavaWebPU");
-        em = emf.createEntityManager(); // Mantener la conexión abierta
     }
 
     public static RutaJpaController getInstance() {
@@ -26,68 +36,30 @@ public class RutaJpaController implements Serializable {
         return instance;
     }
 
-    public List<Ruta> buscarRutaPorParadas(String paradas) {
-        try {
-            Query query = em.createQuery("SELECT r FROM Ruta r WHERE r.paradas LIKE :paradas");
-            query.setParameter("paradas", "%" + paradas + "%");
-            return query.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public EntityManager getEntityManager() {
+        return emf.createEntityManager();
     }
 
     public List<Ruta> obtenerTodasLasRutas() {
+        EntityManager em = getEntityManager();
         try {
             Query query = em.createQuery("SELECT r FROM Ruta r");
             List<Ruta> rutas = query.getResultList();
 
-            // Imprimir la cantidad de rutas recuperadas
-             System.out.println("Número de rutas recuperadas:\n ");
-            System.out.println("Número de rutas recuperadas: " + rutas.size());
-
-            // Imprimir cada ruta recuperada
+            logger.info("Número de rutas recuperadas: " + rutas.size());
             for (Ruta ruta : rutas) {
-                System.out.println("Ruta: " + ruta.getNombreRuta() + ", Paradas: " + ruta.getParadas() + ", Horario: " + ruta.getHorario());
+                logger.info("Ruta: " + ruta.getNombreRuta() + ", Paradas: " + ruta.getParadas() + ", Horario: " + ruta.getHorario());
             }
 
             return rutas;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error obteniendo todas las rutas", e);
             return null;
-        }
-    }
-
-    public void mostrarBusesEnConsola() {
-        try {
-            Query query = em.createQuery("SELECT b FROM Ruta b");
-            List<Ruta> buses = query.getResultList();
-
-            System.out.println("Número de buses recuperados: " + buses.size());
-            for (Ruta bus : buses) {
-                System.out.println("ID: " + bus.getIdBus() + ", Ruta: " + bus.getNombreRuta()
-                        + ", Paradas: " + bus.getParadas() + ", Horario: " + bus.getHorario());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void cerrar() {
-        if (em != null && em.isOpen()) {
+        } finally {
             em.close();
         }
-        if (emf != null && emf.isOpen()) {
-            emf.close();
-        }
     }
-    
-    public EntityManager getEntityManager() {
-    if (em == null || !em.isOpen()) {
-        em = emf.createEntityManager(); // Crear una nueva instancia si no está disponible o abierta
-    }
-    return em;
-}
+
 
 
 }

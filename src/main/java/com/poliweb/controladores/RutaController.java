@@ -23,6 +23,10 @@ public class RutaController extends HttpServlet {
         this.controladoraPersistencia = new RutaJpaController();
     }
 
+    public RutaController(RutaJpaController controladoraPersistencia) {
+        this.controladoraPersistencia = controladoraPersistencia;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -32,6 +36,13 @@ public class RutaController extends HttpServlet {
             manejarError(response, e);
         }
     }
+
+
+    private void manejarError(HttpServletResponse response, Exception e) throws IOException {
+        String errorMessage = "Error en la consulta: " + e.getMessage();
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, errorMessage);
+    }
+
 
     // Método separado para obtener rutas
     private List<Ruta> obtenerRutas() throws Exception {
@@ -44,10 +55,5 @@ public class RutaController extends HttpServlet {
         request.getRequestDispatcher(RUTA_JSP).forward(request, response);
     }
 
-    // Método separado para manejo de errores
-    private void manejarError(HttpServletResponse response, Exception e) throws IOException {
-        e.printStackTrace();
-        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ERROR_CONSULTA + e.getMessage());
-    }
 }
 

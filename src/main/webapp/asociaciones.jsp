@@ -58,6 +58,18 @@
                 </c:if>
             </div>
         </c:if>
+
+        <c:if test="${asociacionSeleccionada != null}">
+            <form method="post" action="asociaciones">
+                <input type="hidden" name="asociacion" value="${asociacionSeleccionada.nombre}">
+                <label for="nombrePlan">Nombre del Plan:</label>
+                <input type="text" id="nombrePlan" name="nombrePlan">
+                <label for="descripcionPlan">Descripción:</label>
+                <textarea id="descripcionPlan" name="descripcionPlan"></textarea>
+                <button type="submit" class="btn btn-primary">Agregar Plan</button>
+            </form>
+        </c:if>
+
     </div>
 </div>
 

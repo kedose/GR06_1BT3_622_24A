@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -33,7 +34,7 @@
 <body>
     <footer class="bg-gray-800 text-white p-4 mt-8">
         <div class="container text-center">
-            <p>&copy; 2024 Escuela Politécnica Nacional. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Escuela Politï¿½cnica Nacional. Todos los derechos reservados.</p>
         </div>
     </footer>
 

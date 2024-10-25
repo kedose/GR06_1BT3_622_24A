@@ -1,11 +1,11 @@
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\AgregarLikeServlet.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\modelo\Post.java
-C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\ComentarioTest.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\persistencia\exceptions\IllegalOrphanException.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\persistencia\exceptions\PreexistingEntityException.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\AsociacionController.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\modelo\Cafeteria.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\modelo\Comentario.java
+C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\InicioController.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\persistencia\CafeteriaJPAController.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\resources\JakartaEE10Resource.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\SocialController.java
@@ -13,5 +13,6 @@ C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\persistencia\exceptions\
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\persistencia\RutaJpaController.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\CafeteriaController.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\PublicarPostServlet.java
+C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\ServicioController.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\controladores\RutaController.java
 C:\Users\USUARIO\GitHub\GR06_1BT3_622_24A\src\main\java\com\poliweb\modelo\Ruta.java

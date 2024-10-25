@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -37,7 +38,7 @@
             margin-right: 0.5rem; /* Margen derecho */
         }
         .text-2xl {
-            font-size: 1.5rem; /* Tamaño de texto */
+            font-size: 1.5rem; /* TamaÃ±o de texto */
         }
         .font-bold {
             font-weight: bold; /* Negrita */
@@ -45,7 +46,7 @@
         /* Estilos personalizados para enlaces */
         .nav-link {
             color: white; /* Color inicial */
-            transition: color 0.3s ease; /* Transición suave */
+            transition: color 0.3s ease; /* TransiciÃ³n suave */
             text-decoration: none; /* Sin subrayado */
         }
         .nav-link:hover {
@@ -62,24 +63,25 @@
     </style>
 </head>
 <body>
-    <header class="bg-blue-600 text-white p-4">
-        <div class="container flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="${pageContext.request.contextPath}/imagenes/buho.webp" alt="Búho" class="mr-2" width="32" height="32"/>
-                <h1 class="text-2xl font-bold">Portal Estudiantil EPN</h1>
-            </div>
-            <nav>
-                <ul class="nav">
-                    <li><a href="#" class="nav-link">Inicio</a></li>
-                    <li><a href="#" class="nav-link">Servicios</a></li>
-                    <li><a href="#" class="nav-link">Contacto</a></li>
-                </ul>
-            </nav>
+<header class="bg-blue-600 text-white p-4">
+    <div class="container flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="${pageContext.request.contextPath}/imagenes/buho.webp" alt="BÃºho" class="mr-2" width="32" height="32"/>
+            <h1 class="text-2xl font-bold">Portal Estudiantil EPN</h1>
         </div>
-    </header>
+        <nav>
+            <ul class="nav">
+                <!-- Redirige a los controladores -->
+                <li><a href="${pageContext.request.contextPath}/Inicio" class="nav-link">Inicio</a></li>
+                <li><a href="${pageContext.request.contextPath}/Servicios" class="nav-link">Servicios</a></li>
+                <li><a href="${pageContext.request.contextPath}/Contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <script>
-        // Puedes agregar scripts aquí si es necesario
-    </script>
+<script>
+
+</script>
 </body>
 </html>

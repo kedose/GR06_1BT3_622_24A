@@ -34,7 +34,7 @@
 <body>
     <footer class="bg-gray-800 text-white p-4 mt-8">
         <div class="container text-center">
-            <p>&copy; 2024 Escuela Polit�cnica Nacional. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Escuela Politécnica Nacional. Todos los derechos reservados.</p>
         </div>
     </footer>
 

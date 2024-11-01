@@ -3,7 +3,10 @@
 <%@ page import="com.poliweb.modelo.Post" %>
 <%@ page import="com.poliweb.modelo.Comentario" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%--<%@ page import="tu.paquete.Producto" %> <%--%>
+<%--    // Obtener la lista de productos desde el servlet o una fuente de datos--%>
+<%--    List<Producto> productos = (List<Producto>) request.getAttribute("productos");--%>
+<%--%>--%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,57 +20,17 @@
 
 <div class="container my-4">
     <div class="bg-white p-4 rounded-lg shadow-lg">
-        <h1 class="text-center">Área Social</h1>
-
-        <!-- Formulario para publicar -->
-        <form id="form-publicar" class="mb-4">
-            <div class="form-group">
-                <textarea id="mensaje" name="mensaje" class="form-control" placeholder="¿Qué está pasando en la EPN?" rows="4"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Publicar</button>
-        </form>
-
-        <!-- Lista de publicaciones -->
-        <div class="post-list">
-            <h2 class="text-2xl font-bold mb-3">Publicaciones</h2>
-            <div id="posts-container">
-                <c:choose>
-                    <c:when test="${not empty posts}">
-                        <c:forEach var="post" items="${posts}">
-                            <div class="post card mb-3">
-                                <div class="card-body">
-                                    <p class="card-title"><strong>${post.autor}</strong></p>
-                                    <p class="card-text">${post.mensaje}</p>
-                                    <p class="card-text">
-                                        <small class="text-muted">
-                                            <span class="like-count">${post.likes} Me gusta</span> -
-                                            <a href="#" class="toggle-comentarios" data-post-id="${post.id}">Comentarios (0)</a>
-                                        </small>
-                                    </p>
-                                    <button class="btn btn-secondary btn-like" data-post-id="${post.id}">Dar Like</button>
-
-                                    <!-- Sección de comentarios -->
-                                    <div class="comentarios" id="comentarios-${post.id}" style="display:none;">
-                                        <c:forEach var="comentario" items="${post.comentarios}">
-                                            <p><strong>${comentario.autor}:</strong> ${comentario.mensaje}</p>
-                                        </c:forEach>
-                                        <form class="form-comentar" data-post-id="${post.id}">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Añadir un comentario" required>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Comentar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <p>No hay publicaciones.</p>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </div>
+        <h1>Publicaciones</h1>
+        <table>
+            <tbody>
+<%--            <% for (Producto producto : productos) { %>--%>
+<%--            <tr>--%>
+<%--                <td><%= producto.getCodigoEstudiante() %></td>--%>
+<%--                <td><%= producto.getNombreEstudiante() %></td>--%>
+<%--            </tr>--%>
+<%--            <% } %>--%>
+            </tbody>
+        </table>
     </div>
 </div>
 

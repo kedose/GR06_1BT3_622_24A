@@ -26,8 +26,9 @@ public class Producto {
         listaProductos.add(producto); // Añade el producto a la lista
     }
 
+
     public static List<Producto> obtenerProductos() {
-        return listaProductos; // Devuelve la lista de productos
+        return listaProductos;
     }
 
     // Getters para acceder a los atributos

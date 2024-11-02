@@ -70,7 +70,7 @@
       <h2 class="text-2xl font-bold mb-4">Polimarket</h2>
       <p class="mb-4">Vende tus libros de inglés, o objetos que ya no necesites</p>
       <div id="productList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <c:forEach var="product" items="${productos}">
+        <c:forEach var="product" items="${listaproductos}">
           <div class="bg-white p-4 rounded-lg shadow-lg producto-item">
             <h3 class="text-xl font-semibold mb-2">${product.nombreProducto}</h3>
             <p class="text-2xl font-bold text-green-600 mb-2">$${product.precioProducto}</p>
@@ -82,7 +82,8 @@
           </div>
         </c:forEach>
       </div>
-
+    </div>
+  </div>
       <!-- Agrega un producto manualmente para prueba -->
       <script>
         $(document).ready(function() {
@@ -141,25 +142,21 @@
 
         // Verifica que la respuesta sea exitosa
         if (response.success && response.producto) {
-          var newProduct = response.producto;
-
-          // Asigna el nombre del estudiante de la respuesta a la variable local
-          nombreEstudiante = newProduct.nombreEstudiante; // Aquí puedes seguir usándola
-
+          let newProduct = response.producto;
           // Imprimir el nuevo producto para verificar
           console.log("Nuevo producto:", newProduct);
 
           var productHtml = `
-            <div class="bg-white p-4 rounded-lg shadow-lg producto-item">
-                <h3 class="text-xl font-semibold mb-2">${nombreEstudiante}</h3> <!-- Usa aquí -->
-                <p class="text-2xl font-bold text-green-600 mb-2">$${newProduct.precioProducto}</p>
-                <div class="space-y-1 text-sm text-gray-600">
-                    <p>${newProduct.nombreEstudiante}</p>
-                    <p>${newProduct.numeroContacto}</p>
-                    <p>${newProduct.codigoEstudiante}</p>
-                </div>
+        <div class="bg-white p-4 rounded-lg shadow-lg producto-item">
+            <h3 class="text-xl font-semibold mb-2">\${newProduct.nombreProducto}</h3>
+            <p class="text-2xl font-bold text-green-600 mb-2">$\${newProduct.precioProducto}</p>
+            <div class="space-y-1 text-sm text-gray-600">
+                <p>\${newProduct.nombreEstudiante}</p>
+                <p>\${newProduct.numeroContacto}</p>
+                <p>\${newProduct.tiempoVisualizacion}</p>
             </div>
-          `;
+        </div>
+    `;
 
           // Agregar el nuevo producto al inicio de la lista
           $('#productList').prepend(productHtml);

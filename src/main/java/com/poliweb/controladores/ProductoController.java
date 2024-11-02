@@ -1,5 +1,6 @@
 package com.poliweb.controladores;
 
+import com.poliweb.modelo.Cafeteria;
 import com.poliweb.modelo.Producto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/productoController")
 public class ProductoController extends HttpServlet {
@@ -24,31 +26,32 @@ public class ProductoController extends HttpServlet {
             String numeroContacto = request.getParameter("numeroContacto");
             String tiempoVisualizacion = request.getParameter("tiempoVisualizacion");
 
-            // Imprimir en consola los parámetros obtenidos
-            System.out.println("Código Estudiante: " + codigoEstudiante);
-            System.out.println("Nombre Estudiante: " + nombreEstudiante);
-            System.out.println("Nombre Producto: " + nombreProducto);
-            System.out.println("Precio Producto: " + precioProducto);
-            System.out.println("Número de Contacto: " + numeroContacto);
-            System.out.println("Tiempo de Visualización: " + tiempoVisualizacion);
-
             // Crea un nuevo producto y lo añade a la lista
-            Producto producto = new Producto(codigoEstudiante, nombreEstudiante, nombreProducto, precioProducto, numeroContacto, tiempoVisualizacion);
-            Producto.agregarProducto(producto); // Usar el método estático para agregar el producto
+            Producto producto = new Producto(codigoEstudiante, nombreEstudiante,
+                    nombreProducto, precioProducto, numeroContacto, tiempoVisualizacion);
+            Producto.agregarProducto(producto);
 
-            // Imprimir en consola el producto creado
-            System.out.println("Producto agregado: " + nombreProducto);
+            // Enviar la lista de productos al JSP
+            List<Producto> listaproductos = Producto.obtenerProductos();
+            request.setAttribute("listaproductos", listaproductos);
 
-            // Enviar una respuesta JSON al cliente
+            // Enviar respuesta JSON al cliente (sin cambios)
             response.setContentType("application/json");
-            response.getWriter().write("{\"success\": true, \"producto\": {\"nombreProducto\": \"" + nombreProducto + "\", \"precioProducto\": \"" + precioProducto + "\", \"nombreEstudiante\": \"" + nombreEstudiante + "\", \"numeroContacto\": \"" + numeroContacto + "\", \"codigoEstudiante\": \"" + codigoEstudiante + "\"}}");
+            response.getWriter().write("{\"success\": true, \"producto\": {" +
+                    "\"nombreProducto\": \"" + nombreProducto + "\"," +
+                    "\"precioProducto\": \"" + precioProducto + "\"," +
+                    "\"nombreEstudiante\": \"" + nombreEstudiante + "\"," +
+                    "\"numeroContacto\": \"" + numeroContacto + "\"," +
+                    "\"codigoEstudiante\": \"" + codigoEstudiante + "\"," +
+                    "\"tiempoVisualizacion\": \"" + tiempoVisualizacion + "\"" +
+                    "}}");
 
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"success\": false, \"message\": \"Error procesando la solicitud\"}");
-            e.printStackTrace(); // Imprimir el stack trace del error en la consola
+            e.printStackTrace();
         }
     }
-
-
 }
+
+

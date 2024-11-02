@@ -1,6 +1,5 @@
 package com.poliweb.controladores;
 
-import com.poliweb.modelo.Cafeteria;
 import com.poliweb.modelo.Producto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -35,7 +34,7 @@ public class ProductoController extends HttpServlet {
             List<Producto> listaproductos = Producto.obtenerProductos();
             request.setAttribute("listaproductos", listaproductos);
 
-            // Enviar respuesta JSON al cliente (sin cambios)
+            // Enviar respuesta JSON al cliente
             response.setContentType("application/json");
             response.getWriter().write("{\"success\": true, \"producto\": {" +
                     "\"nombreProducto\": \"" + nombreProducto + "\"," +
@@ -53,5 +52,3 @@ public class ProductoController extends HttpServlet {
         }
     }
 }
-
-

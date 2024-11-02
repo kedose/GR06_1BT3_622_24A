@@ -23,12 +23,33 @@ public class Producto {
     }
 
     public static void agregarProducto(Producto producto) {
-        listaProductos.add(producto); // Añade el producto a la lista
+        if (producto != null) {
+            listaProductos.add(producto); // Añade el producto a la lista
+        }
     }
 
-
     public static List<Producto> obtenerProductos() {
-        return listaProductos;
+        return new ArrayList<>(listaProductos); // Retorna una copia de la lista para evitar modificaciones externas
+    }
+
+    public static List<Producto> buscarProductosPorNombre(String nombre) {
+        List<Producto> resultados = new ArrayList<>();
+        for (Producto producto : listaProductos) {
+            if (producto.getNombreProducto().equalsIgnoreCase(nombre)) {
+                resultados.add(producto);
+            }
+        }
+        return resultados;
+    }
+
+    public static List<Producto> buscarProductosPorPrecio(double precioMinimo, double precioMaximo) {
+        List<Producto> resultados = new ArrayList<>();
+        for (Producto producto : listaProductos) {
+            if (producto.getPrecioProducto() >= precioMinimo && producto.getPrecioProducto() <= precioMaximo) {
+                resultados.add(producto);
+            }
+        }
+        return resultados;
     }
 
     // Getters para acceder a los atributos

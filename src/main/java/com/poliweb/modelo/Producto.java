@@ -32,12 +32,15 @@ public class Producto {
         return new ArrayList<>(listaProductos); // Retorna una copia de la lista para evitar modificaciones externas
     }
 
-    public static List<Producto> buscarProductosPorNombre(String nombre) {
+    public static List<Producto> buscarProductosPorNombre(String nombre) throws NoProductosEncontradosException {
         List<Producto> resultados = new ArrayList<>();
         for (Producto producto : listaProductos) {
-            if (producto.getNombreProducto().equalsIgnoreCase(nombre)) {
+            if (producto.getNombreProducto().toLowerCase().contains(nombre.toLowerCase())) { // Corrección aquí
                 resultados.add(producto);
             }
+        }
+        if (resultados.isEmpty()) {
+            throw new NoProductosEncontradosException("No se encontraron productos con el nombre: " + nombre);
         }
         return resultados;
     }
@@ -49,7 +52,36 @@ public class Producto {
                 resultados.add(producto);
             }
         }
+        if (resultados.isEmpty()) {
+            throw new NoProductosEncontradosException("No se encontraron productos con el precio indicado");
+        }
         return resultados;
+    }
+
+    public static boolean validarProducto(Producto producto) {
+        if (producto == null) {
+            throw new ProductoException("El producto no puede ser nulo");
+        }
+
+        if (producto.getCodigoEstudiante() == null || producto.getCodigoEstudiante().isEmpty()) {
+            throw new ProductoException("El código de estudiante es obligatorio");
+        }
+
+        // Validación del formato del código de estudiante (ejemplo: solo números)
+        if (!producto.getCodigoEstudiante().matches("\\d+")) {
+            throw new ProductoException("El código de estudiante debe ser numérico");
+        }
+
+        // Otras validaciones, por ejemplo:
+        if (producto.getNombreProducto() == null || producto.getNombreProducto().isEmpty()) {
+            throw new ProductoException("El nombre del producto es obligatorio");
+        }
+
+        if (producto.getPrecioProducto() <= 0) {
+            throw new ProductoException("El precio del producto debe ser positivo");
+        }
+
+        return true;
     }
 
     // Getters para acceder a los atributos
@@ -60,3 +92,17 @@ public class Producto {
     public String getNumeroContacto() { return numeroContacto; }
     public String getTiempoVisualizacion() { return tiempoVisualizacion; }
 }
+
+class ProductoException extends RuntimeException {
+    public ProductoException(String message) {
+        super(message);
+    }
+}
+
+class NoProductosEncontradosException extends RuntimeException {
+    public NoProductosEncontradosException(String mensaje) {
+        super(mensaje);
+    }
+}
+
+

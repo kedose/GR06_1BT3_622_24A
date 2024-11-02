@@ -22,12 +22,6 @@
     <div class="bg-white p-4 rounded-lg shadow-lg">
         <h1>Publicaciones</h1>
         <table>
-            <thead>
-            <tr>
-                <th>Código Estudiante</th>
-                <th>Nombre Estudiante</th>
-            </tr>
-            </thead>
             <tbody>
 <%--            <% for (Producto producto : productos) { %>--%>
 <%--            <tr>--%>

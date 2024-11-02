@@ -1,80 +1,40 @@
 package com.poliweb.modelo;
 
-import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.Serializable;
+public class Producto {
+    private static List<Producto> listaProductos = new ArrayList<>(); // Lista estática para almacenar productos
 
-@Entity // Define que la clase es una entidad
-@Table(name = "producto")
-public class Producto implements Serializable {
+    private String codigoEstudiante;
+    private String nombreEstudiante;
+    private String nombreProducto;
+    private double precioProducto;
+    private String numeroContacto;
+    private String tiempoVisualizacion;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nombre;
-    private String descripcion;
-    private double precio;
-    private String categoria;
-
-    // Constructores
-
-    public Producto() {
+    public Producto(String codigoEstudiante, String nombreEstudiante, String nombreProducto, double precioProducto, String numeroContacto, String tiempoVisualizacion) {
+        this.codigoEstudiante = codigoEstudiante;
+        this.nombreEstudiante = nombreEstudiante;
+        this.nombreProducto = nombreProducto;
+        this.precioProducto = precioProducto;
+        this.numeroContacto = numeroContacto;
+        this.tiempoVisualizacion = tiempoVisualizacion;
     }
 
-    public Producto(String nombre, String descripcion, double precio, String categoria) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.categoria = categoria;
+    public static void agregarProducto(Producto producto) {
+        listaProductos.add(producto); // Añade el producto a la lista
     }
 
-    public Producto(int id, String nombre, String descripcion, double precio, String categoria) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.categoria = categoria;
+    public static List<Producto> obtenerProductos() {
+        return listaProductos; // Devuelve la lista de productos
     }
 
-    // Getters y Setters
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+    // Getters para acceder a los atributos
+    public String getCodigoEstudiante() { return codigoEstudiante; }
+    public String getNombreEstudiante() { return nombreEstudiante; }
+    public String getNombreProducto() { return nombreProducto; }
+    public double getPrecioProducto() { return precioProducto; }
+    public String getNumeroContacto() { return numeroContacto; }
+    public String getTiempoVisualizacion() { return tiempoVisualizacion; }
 }

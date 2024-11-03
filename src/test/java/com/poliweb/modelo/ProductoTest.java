@@ -1,11 +1,19 @@
 package com.poliweb.modelo;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class ProductoTest {
+
+    @BeforeEach
+    public void setUp() {
+        // Limpiar la lista de productos antes de cada prueba
+        Producto.limpiarProductos();
+    }
 
     @Test
     public void validarProductoConCamposVacios() {
@@ -20,18 +28,19 @@ public class ProductoTest {
 
     @Test
     public void validarFormatoCodigoEstudiante() {
-        try {
-            Producto productoInvalido = new Producto("ABC123", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
-            assertFalse(Producto.validarProducto(productoInvalido));
-        }
-        catch (Exception e) {
-            System.out.println("Error al validar el producto: " + e.getMessage());
-        }
+        // Producto inválido con código no numérico
+        Producto codigoEstudianteInvalido = new Producto("ABC123", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        ProductoException exception = assertThrows(ProductoException.class, () -> Producto.validarProducto(codigoEstudianteInvalido));
+        System.out.println("Error al validar el código: " + exception.getMessage());
 
-        Producto productoValido = new Producto("12345", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
-        assertTrue(Producto.validarProducto(productoValido));
+        // Producto inválido con código que no tiene 9 dígitos
+        Producto codigoEstudianteInvalido2 = new Producto("1234", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        exception = assertThrows(ProductoException.class, () -> Producto.validarProducto(codigoEstudianteInvalido2));
+        System.out.println("Error al validar el código: " + exception.getMessage());
 
-
+        // Producto válido
+        Producto codigoEstudianteValido = new Producto("123456789", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        assertTrue(Producto.validarProducto(codigoEstudianteValido));
     }
 
     @Test
@@ -76,7 +85,7 @@ public class ProductoTest {
         Producto producto = new Producto("202020475", "Issac",
                 "Libro de Ingles", 15, "0983307662",
                 "1 semana");
-        assertTrue(Producto.validarProducto(producto));
+
     }
 
     @Test

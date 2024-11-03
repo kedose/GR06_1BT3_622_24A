@@ -48,6 +48,7 @@ public class ProductoParametersTest {
 
     @Test
     public void given_parameters_when_validarProducto_then_ok() {
+        System.out.println("Test 1");
         try {
             producto = new Producto(codigoEstudiante, nombreEstudiante, nombreProducto, precioProducto, numeroContacto, tiempoVisualizacion);
             assertTrue(Producto.validarProducto(producto));
@@ -58,6 +59,7 @@ public class ProductoParametersTest {
 
     @Test
     public void given_parameters_when_buscarProductosPorNombre_then_ok() {
+        System.out.println("Test 2");
         try {
             producto = new Producto(codigoEstudiante, nombreEstudiante, nombreProducto, precioProducto, numeroContacto, tiempoVisualizacion);
             Producto.agregarProducto(producto);
@@ -71,6 +73,7 @@ public class ProductoParametersTest {
 
     @Test
     public void given_parameters_when_buscarProductosPorPrecio_then_ok() {
+        System.out.println("Test 3");
         try {
             producto = new Producto(codigoEstudiante, nombreEstudiante, nombreProducto, precioProducto, numeroContacto, tiempoVisualizacion);
             Producto.agregarProducto(producto);

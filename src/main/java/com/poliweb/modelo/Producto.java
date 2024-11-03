@@ -72,10 +72,9 @@ public class Producto {
         }
 
         // Validación del formato del código de estudiante (ejemplo: solo números)
-        if (!producto.getCodigoEstudiante().matches("\\d+")) {
-            throw new ProductoException("El código de estudiante debe ser numérico");
+        if (!producto.getCodigoEstudiante().matches("\\d{9}")) {
+            throw new ProductoException("El código de estudiante debe tener exactamente 9 dígitos numericos");
         }
-
         // Otras validaciones, por ejemplo:
         if (producto.getNombreProducto() == null || producto.getNombreProducto().isEmpty()) {
             throw new ProductoException("El nombre del producto es obligatorio");
@@ -85,6 +84,13 @@ public class Producto {
             throw new ProductoException("El precio del producto debe ser positivo");
         }
 
+        if (producto.getNumeroContacto() == null || producto.getNumeroContacto().isEmpty()) {
+            throw new ProductoException("El número de contacto es obligatorio");
+        }
+
+        if (producto.getTiempoVisualizacion() == null || producto.getTiempoVisualizacion().isEmpty()) {
+            throw new ProductoException("El tiempo de visualización es obligatorio");
+        }
         return true;
     }
 

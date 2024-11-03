@@ -1,11 +1,19 @@
 package com.poliweb.modelo;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class ProductoTest {
+
+    @BeforeEach
+    public void setUp() {
+        // Limpiar la lista de productos antes de cada prueba
+        Producto.limpiarProductos();
+    }
 
     @Test
     public void validarProductoConCamposVacios() {

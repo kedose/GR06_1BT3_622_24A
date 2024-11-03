@@ -21,7 +21,17 @@ public class ProductoController extends HttpServlet {
             String codigoEstudiante = request.getParameter("codigoEstudiante");
             String nombreEstudiante = request.getParameter("nombreEstudiante");
             String nombreProducto = request.getParameter("nombreProducto");
-            double precioProducto = Double.parseDouble(request.getParameter("precioProducto"));
+            double precioProducto;
+
+            // Intentar convertir el precio del producto a un número
+            try {
+                precioProducto = Double.parseDouble(request.getParameter("precioProducto"));
+            } catch (NumberFormatException e) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write("{\"success\": false, \"message\": \"El precio del producto debe ser un número válido\"}");
+                return; // Salir del método para evitar continuar con la lógica
+            }
+
             String numeroContacto = request.getParameter("numeroContacto");
             String tiempoVisualizacion = request.getParameter("tiempoVisualizacion");
 
@@ -44,7 +54,6 @@ public class ProductoController extends HttpServlet {
                     "\"codigoEstudiante\": \"" + codigoEstudiante + "\"," +
                     "\"tiempoVisualizacion\": \"" + tiempoVisualizacion + "\"" +
                     "}}");
-
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"success\": false, \"message\": \"Error procesando la solicitud\"}");

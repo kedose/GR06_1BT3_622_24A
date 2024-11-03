@@ -22,6 +22,10 @@ public class Producto {
         this.tiempoVisualizacion = tiempoVisualizacion;
     }
 
+    public static void limpiarProductos() {
+        listaProductos.clear();
+    }
+
     public static void agregarProducto(Producto producto) {
         if (producto != null) {
             listaProductos.add(producto); // Añade el producto a la lista

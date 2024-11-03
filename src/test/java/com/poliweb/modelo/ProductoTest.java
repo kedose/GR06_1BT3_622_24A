@@ -2,6 +2,9 @@ package com.poliweb.modelo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +12,21 @@ import java.util.List;
 
 public class ProductoTest {
 
+    @BeforeClass
+    public static void setUpClass() {
+        System.out.println("setUpClass()");
+    }
+
     @BeforeEach
     public void setUp() {
+        System.out.println("setUp()");
         // Limpiar la lista de productos antes de cada prueba
         Producto.limpiarProductos();
     }
 
     @Test
     public void validarProductoConCamposVacios() {
+        System.out.println("Test 1");
         try {
             Producto producto = new Producto("", "", "", 0, "", "");
             assertFalse(Producto.validarProducto(producto));
@@ -28,6 +38,7 @@ public class ProductoTest {
 
     @Test
     public void validarFormatoCodigoEstudiante() {
+        System.out.println("Test 2");
         // Producto inválido con código no numérico
         Producto codigoEstudianteInvalido = new Producto("ABC123", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
         ProductoException exception = assertThrows(ProductoException.class, () -> Producto.validarProducto(codigoEstudianteInvalido));
@@ -45,6 +56,7 @@ public class ProductoTest {
 
     @Test
     public void buscarProductosPorNombreCaseInsensitive() {
+        System.out.println("Test 3");
         Producto producto1 = new Producto("12345", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -62,7 +74,7 @@ public class ProductoTest {
 
     @Test
     public void buscarProductosPorRangoDePrecios() {
-
+        System.out.println("Test 4");
         Producto producto1 = new Producto("12345", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -82,6 +94,7 @@ public class ProductoTest {
 
     @Test
     public void crearProductoConExito() {
+        System.out.println("Test 5");
         Producto producto = new Producto("202020475", "Issac",
                 "Libro de Ingles", 15, "0983307662",
                 "1 semana");
@@ -90,6 +103,7 @@ public class ProductoTest {
 
     @Test
     public void buscarProductosSimilares() {
+        System.out.println("Test 6");
         Producto producto1 = new Producto("202020475", "Kevin Donozo",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -118,6 +132,7 @@ public class ProductoTest {
 
     @Test
     public void crear2ProductosIdenticos() {
+        System.out.println("Test 7");
         Producto producto1 = new Producto("202020475", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -139,6 +154,7 @@ public class ProductoTest {
 
     @Test
     public void crearProductoSinNumeroContacto() {
+        System.out.println("Test 8");
         try {
             Producto producto1 = new Producto("2020204759", "Juan Pérez",
                     "Libro de Java", 20.0, "",
@@ -148,7 +164,14 @@ public class ProductoTest {
         catch (Exception e) {
             System.out.println("Error al validar el producto: " + e.getMessage());
         }
+    }
+    @AfterEach
+    public void tearDown() {
+        System.out.println("tearDown()");
+    }
 
-
+    @AfterClass
+    public static void tearDownClass() {
+        System.out.println("tearDownClass()");
     }
 }

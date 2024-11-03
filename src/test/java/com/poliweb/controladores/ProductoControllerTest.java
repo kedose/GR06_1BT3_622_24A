@@ -38,6 +38,7 @@ public class ProductoControllerTest {
 
     @Test
     public void testDoPostSuccess() throws ServletException, IOException {
+        System.out.println("Test 1");
         // Simulando los parámetros de la solicitud
         when(request.getParameter("codigoEstudiante")).thenReturn("12345");
         when(request.getParameter("nombreEstudiante")).thenReturn("Juan Perez");
@@ -68,6 +69,7 @@ public class ProductoControllerTest {
 
     @Test
     public void testDoPostError() throws IOException, ServletException {
+        System.out.println("Test 2");
         // Simulando parámetros que causen error en el parseo de Double
         when(request.getParameter("codigoEstudiante")).thenReturn("12345");
         when(request.getParameter("nombreEstudiante")).thenReturn("Juan Perez");

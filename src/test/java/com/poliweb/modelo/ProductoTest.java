@@ -73,7 +73,7 @@ public class ProductoTest {
 
     @Test
     public void crearProductoConExito() {
-        Producto producto = new Producto("2020", "Issac",
+        Producto producto = new Producto("202020475", "Issac",
                 "Libro de Ingles", 15, "0983307662",
                 "1 semana");
         assertTrue(Producto.validarProducto(producto));
@@ -81,16 +81,16 @@ public class ProductoTest {
 
     @Test
     public void buscarProductosSimilares() {
-        Producto producto1 = new Producto("12345", "Kevin Donozo",
+        Producto producto1 = new Producto("202020475", "Kevin Donozo",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
-        Producto producto2 = new Producto("67890", "María López",
+        Producto producto2 = new Producto("202020476", "María López",
                 "libro de Ingles Avanzado 1", 30.0, "9876543210",
                 "1 mes");
-        Producto producto3 = new Producto("20204", "Juan Pérez",
+        Producto producto3 = new Producto("202020477", "Juan Pérez",
                 "libro de Ingles Avanzado 2", 20.0, "1234567890",
                 "1 semana");
-        Producto producto4 = new Producto("20201", "Issac DLC",
+        Producto producto4 = new Producto("202020478", "Issac DLC",
                 "libro de Ingles Basico 1", 30.0, "9876543210",
                 "1 mes");
 
@@ -105,15 +105,14 @@ public class ProductoTest {
         for (Producto producto : resultados) {
             System.out.println(producto.getNombreProducto());
         }
-
     }
 
     @Test
     public void crear2ProductosIdenticos() {
-        Producto producto1 = new Producto("12345", "Juan Pérez",
+        Producto producto1 = new Producto("202020475", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
-        Producto producto2 = new Producto("12345", "Juan Pérez",
+        Producto producto2 = new Producto("202020477", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
         Producto.agregarProducto(producto1);
@@ -132,7 +131,7 @@ public class ProductoTest {
     @Test
     public void crearProductoSinNumeroContacto() {
         try {
-            Producto producto1 = new Producto("12345", "Juan Pérez",
+            Producto producto1 = new Producto("2020204759", "Juan Pérez",
                     "Libro de Java", 20.0, "",
                     "1 semana");
             assertFalse(Producto.validarProducto(producto1));

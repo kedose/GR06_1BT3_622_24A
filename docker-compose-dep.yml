@@ -8,5 +8,5 @@ services:
     container_name: database
     image: wooshc/gr06_1bt3_622_24a:database  # Asegúrate de que esta imagen esté correctamente construida y subida a Docker Hub
     ports:
-      - "3307:3306"  # Asegúrate de que el puerto esté expuesto correctamente
+      - "3307:3307"  # Asegúrate de que el puerto esté expuesto correctamente
 

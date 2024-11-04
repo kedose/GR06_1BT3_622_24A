@@ -5,20 +5,27 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
-
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CafeteriaJPAController implements Serializable {
 
     private static CafeteriaJPAController instance;
     private EntityManagerFactory emf;
-    private EntityManager em;
+    private static final Logger logger = Logger.getLogger(CafeteriaJPAController.class.getName());
 
-    // Constructor
+    static {
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.ALL);
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.ALL);
+    }
+
     public CafeteriaJPAController() {
         emf = Persistence.createEntityManagerFactory("EjemploJavaWebPU");
-        em = emf.createEntityManager(); // Mantener la conexión abierta
     }
 
     public static CafeteriaJPAController getInstance() {
@@ -28,25 +35,27 @@ public class CafeteriaJPAController implements Serializable {
         return instance;
     }
 
-    public void agregarCafeteria(Cafeteria cafeteria) {
-        try {
-            em.getTransaction().begin();
-            em.persist(cafeteria);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
+    public EntityManager getEntityManager() {
+        return emf.createEntityManager();
     }
 
     public List<Cafeteria> obtenerMenu() {
+        EntityManager em = getEntityManager();
         try {
             Query query = em.createQuery("SELECT c FROM Cafeteria c");
-            return query.getResultList();
+            List<Cafeteria> menu = query.getResultList();
+
+            logger.info("Número de elementos en el menú recuperados: " + menu.size());
+            for (Cafeteria item : menu) {
+                logger.info("Nombre: " + item.getNombreMenu() + ", Descripción: " + item.getDescripcionMenu() + ", Precio: " + item.getPrecio() + ", Tipo: " + item.getTipoMenu());
+            }
+
+            return menu;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error obteniendo el menú de la cafetería", e);
             return null;
+        } finally {
+            em.close();
         }
     }
-
 }

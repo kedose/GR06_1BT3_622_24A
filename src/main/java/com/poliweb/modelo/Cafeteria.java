@@ -9,14 +9,14 @@ import jakarta.persistence.GenerationType;
 public class Cafeteria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_cafeteria;
     private String nombreMenu;
     private String descripcionMenu;
     private Double precio;
     private String tipoMenu;
 
     public Cafeteria(Long id, String nombreMenu, String descripcionMenu, Double precio, String tipoMenu) {
-        this.id = id;
+        this.id_cafeteria = id;
         this.nombreMenu = nombreMenu;
         this.descripcionMenu = descripcionMenu;
         this.precio = precio;
@@ -51,12 +51,12 @@ public class Cafeteria {
         this.descripcionMenu = descripcionMenu;
     }
 
-    public Long getId() {
-        return id;
+    public Long getId_cafeteria() {
+        return id_cafeteria;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_cafeteria(Long id) {
+        this.id_cafeteria = id;
     }
 
     public String getNombreMenu() {

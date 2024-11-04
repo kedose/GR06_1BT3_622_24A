@@ -1,11 +1,9 @@
 package com.poliweb.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "cafeteria") // Indica que esta entidad corresponde a la tabla 'cafeteria'
 public class Cafeteria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -27,7 +27,7 @@ public class CafeteriaController extends HttpServlet {
         List<Cafeteria> menuItems = cafeteriaController.obtenerMenu();
 
         // Pasar la lista de menú al JSP
-        request.setAttribute("menuItems", menuItems);
+        request.setAttribute("menu", menuItems);
         request.getRequestDispatcher("cafeteria.jsp").forward(request, response);
     }
 }

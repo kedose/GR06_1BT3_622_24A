@@ -101,6 +101,18 @@ public class Producto {
     public double getPrecioProducto() { return precioProducto; }
     public String getNumeroContacto() { return numeroContacto; }
     public String getTiempoVisualizacion() { return tiempoVisualizacion; }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigoEstudiante='" + codigoEstudiante + '\'' +
+                ", nombreEstudiante='" + nombreEstudiante + '\'' +
+                ", nombreProducto='" + nombreProducto + '\'' +
+                ", precioProducto=" + precioProducto +
+                ", numeroContacto='" + numeroContacto + '\'' +
+                ", tiempoVisualizacion='" + tiempoVisualizacion + '\'' +
+                '}';
+    }
 }
 
 class ProductoException extends RuntimeException {

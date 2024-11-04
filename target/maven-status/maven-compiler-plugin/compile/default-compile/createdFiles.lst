@@ -17,6 +17,7 @@ com\poliweb\controladores\ProductoController.class
 com\poliweb\modelo\Producto.class
 com\poliweb\modelo\Cafeteria.class
 com\poliweb\controladores\ServicioController.class
+com\poliweb\modelo\ProductoExecute.class
 com\poliweb\modelo\Comentario.class
 com\poliweb\modelo\ProductoException.class
 com\poliweb\modelo\Post.class

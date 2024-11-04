@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8081:8081"  # Mapear el puerto 8081 del contenedor al puerto 8081 de la máquina host
+    restart: always  # Siempre reiniciar el contenedor en caso de fallo

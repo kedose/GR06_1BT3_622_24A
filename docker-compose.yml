@@ -1,8 +1,22 @@
-version: '3.8'
-
 services:
-  app:
-    build: .
+  mysql:
+    container_name: mysql_db
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: javaweb
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf  # Montar tu archivo de configuración
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Montar tu script de inicialización
     ports:
-      - "8081:8081"  # Mapear el puerto 8081 del contenedor al puerto 8081 de la máquina host
-    restart: always  # Siempre reiniciar el contenedor en caso de fallo
+      - "3307:3306"
+
+  webapp:
+    container_name: webapp
+    image: tomcat:10.1.24-jdk21-temurin-jammy
+    restart: always
+    volumes:
+      - ./target/PaginaWebPoli-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/PaginaWebPoli.war
+    ports:
+      - "8080:8080"

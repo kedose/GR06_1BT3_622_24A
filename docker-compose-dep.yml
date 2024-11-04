@@ -1,0 +1,12 @@
+services:
+  webapp:
+    container_name: webapp
+    image: wooshc/gr06_1bt3_622_24a:webapp  # Asegúrate de que esta imagen esté correctamente construida y subida a Docker Hub
+    ports:
+      - "8080:8080"  # Asegúrate de que el puerto esté expuesto correctamente
+  database:
+    container_name: database
+    image: wooshc/gr06_1bt3_622_24a:database  # Asegúrate de que esta imagen esté correctamente construida y subida a Docker Hub
+    ports:
+      - "3307:3307"  # Asegúrate de que el puerto esté expuesto correctamente
+

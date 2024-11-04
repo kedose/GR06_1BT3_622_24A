@@ -61,14 +61,15 @@
   </div>
 
   <!-- Campo de búsqueda y filtrado -->
-  <div class="bg-white p-4 rounded-lg shadow-lg">
-    <h3 class="text-xl font-semibold mb-2">Buscar Productos</h3>
-    <input type="text" id="searchInput" placeholder="Buscar por nombre de producto..." class="w-full p-2 border rounded-lg" onkeyup="filterProducts()">
+  <div class="bg-light p-4 rounded-lg shadow-lg"> <!-- Cambié bg-white a bg-light -->
+    <h3 class="text-xl font-semibold mb-2 text-primary">Buscar Productos</h3> <!-- Cambié el color del texto a primary -->
+    <input type="text" id="searchInput" placeholder="Buscar por nombre de producto..." class="w-full p-2 border border-primary rounded-lg" onkeyup="filterProducts()">
 
-    <h3 class="text-xl font-semibold mb-2 mt-4">Filtrar por Precio</h3>
+    <h3 class="text-xl font-semibold mb-2 mt-4 text-primary">Filtrar por Precio</h3> <!-- Cambié el color del texto a primary -->
     <input type="range" id="priceRange" min="0" max="100" value="100" class="w-full" oninput="filterByPrice(this.value)">
     <p id="priceValue" class="text-sm text-gray-600">Precio máximo: $<span id="priceAmount">100</span></p>
   </div>
+
 
   <!-- Lista de productos en venta -->
   <div class="bg-white p-6 rounded-lg shadow-lg">

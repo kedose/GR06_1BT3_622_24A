@@ -1,0 +1,11 @@
+services:
+  webapp:
+    container_name: webapp
+    image: wooshc/gr06_1bt3_622_24a:webapp .
+    ports:
+      - 8080:8080
+  database:
+    container_name: database
+    image: wooshc/gr06_1bt3_622_24a:database
+    ports:
+      - 3307:3306

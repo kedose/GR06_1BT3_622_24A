@@ -40,7 +40,7 @@ public class ProductoControllerTest {
     public void testDoPostSuccess() throws ServletException, IOException {
         System.out.println("Test 1");
         // Simulando los parámetros de la solicitud
-        when(request.getParameter("codigoEstudiante")).thenReturn("12345");
+        when(request.getParameter("codigoEstudiante")).thenReturn("123456");
         when(request.getParameter("nombreEstudiante")).thenReturn("Juan Perez");
         when(request.getParameter("nombreProducto")).thenReturn("Laptop");
         when(request.getParameter("precioProducto")).thenReturn("500.0");

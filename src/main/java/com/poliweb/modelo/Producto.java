@@ -1,14 +1,20 @@
 package com.poliweb.modelo;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "productos") // Indica que esta entidad corresponde a la tabla 'productos'
 public class Producto {
 
     // Atributos estáticos
     private static List<Producto> listaProductos = new ArrayList<>(); // Lista estática para almacenar productos
 
     // Atributos de instancia
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String codigoEstudiante;
     private String nombreEstudiante;
     private String nombreProducto;
@@ -17,6 +23,10 @@ public class Producto {
     private String tiempoVisualizacion;
 
     // Constructor
+    public Producto() {
+        // Constructor por defecto requerido por JPA
+    }
+
     public Producto(String codigoEstudiante, String nombreEstudiante, String nombreProducto, double precioProducto, String numeroContacto, String tiempoVisualizacion) {
         this.codigoEstudiante = codigoEstudiante;
         this.nombreEstudiante = nombreEstudiante;

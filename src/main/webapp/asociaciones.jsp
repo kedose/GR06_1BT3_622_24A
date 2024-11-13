@@ -12,7 +12,7 @@
 <body>
 <div class="container my-4">
     <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-4">Asociaciones EPN</h2>
+        <h2 class="text-2xl font-bold mb-4">Asociaciones EPN - Adquiere tu plan para apoyar a tu asociación</h2>
 
         <!-- Menú con los nombres de las asociaciones -->
         <div class="menu-horizontal">

@@ -5,7 +5,7 @@ FROM tomcat:10-jdk17-temurin-jammy
 COPY ./target/PaginaWebPoli-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/PaginaWebPoli.war
 
 # Exponer el puerto de Tomcat
-EXPOSE 8080
+EXPOSE 8081
 
 # Iniciar Tomcat
 CMD ["catalina.sh", "run"]

@@ -1,4 +1,3 @@
-com\poliweb\controladores\PublicarPostServlet.class
 com\poliweb\controladores\AsociacionController$Asociacion.class
 com\poliweb\modelo\NoProductosEncontradosException.class
 com\poliweb\controladores\InicioController.class
@@ -25,4 +24,3 @@ com\poliweb\controladores\CafeteriaController.class
 com\poliweb\controladores\RutaController.class
 persistencia\exceptions\NonexistentEntityException.class
 com\poliweb\controladores\AgregarLikeServlet.class
-com\poliweb\controladores\PublicacionController.class

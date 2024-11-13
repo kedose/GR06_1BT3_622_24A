@@ -6,7 +6,5 @@ public class ProductoExecute {
         Producto producto = new Producto("123456789", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
         System.out.println("Producto: " + producto.toString());
         System.out.println("== It is a change in the code ==");
-        System.out.println("== Kevin realizo un cambio ==");
     }
-
 }

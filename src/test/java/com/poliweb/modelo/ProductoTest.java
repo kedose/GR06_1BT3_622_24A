@@ -15,6 +15,7 @@ public class ProductoTest {
     @BeforeClass
     public static void setUpClass() {
         System.out.println("setUpClass()");
+        // Configuración inicial para la clase, se ejecuta una vez antes de todos los tests.
     }
 
     @BeforeEach
@@ -27,9 +28,10 @@ public class ProductoTest {
     @Test
     public void validarProductoConCamposVacios() {
         System.out.println("Test 1");
+        // Probar la validación de un producto con campos vacíos
         try {
             Producto producto = new Producto("", "", "", 0, "", "");
-            assertFalse(Producto.validarProducto(producto));
+            assertFalse(Producto.validarProducto(producto));  // Espera que el producto no sea válido
         }
         catch (Exception e) {
             System.out.println("Error al validar el producto: " + e.getMessage());
@@ -49,82 +51,70 @@ public class ProductoTest {
         exception = assertThrows(ProductoException.class, () -> Producto.validarProducto(codigoEstudianteInvalido2));
         System.out.println("Error al validar el código: " + exception.getMessage());
 
-        // Producto válido
+        // Producto válido con código de 9 dígitos
         Producto codigoEstudianteValido = new Producto("123456789", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
-        assertTrue(Producto.validarProducto(codigoEstudianteValido));
+        assertTrue(Producto.validarProducto(codigoEstudianteValido));  // Espera que sea válido
     }
 
     @Test
     public void buscarProductosPorNombreCaseInsensitive() {
         System.out.println("Test 3");
-        Producto producto1 = new Producto("12345", "Juan Pérez",
-                "Libro de Java", 20.0, "1234567890",
-                "1 semana");
-        Producto producto2 = new Producto("67890", "María López",
-                "libro de python", 30.0, "9876543210",
-                "1 mes");
+        // Crear productos y agregarlos a la lista
+        Producto producto1 = new Producto("12345", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        Producto producto2 = new Producto("67890", "María López", "libro de python", 30.0, "9876543210", "1 mes");
 
         Producto.agregarProducto(producto1);
         Producto.agregarProducto(producto2);
 
+        // Buscar productos por nombre, ignorando mayúsculas y minúsculas
         List<Producto> resultados = Producto.buscarProductosPorNombre("jaVa");
-        assertEquals(1, resultados.size());
-        //assertEquals("Libro de Java", resultados.get(0).getNombreProducto());
+        assertEquals(1, resultados.size());  // Espera encontrar solo un producto
     }
 
     @Test
     public void buscarProductosPorRangoDePrecios() {
         System.out.println("Test 4");
-        Producto producto1 = new Producto("12345", "Juan Pérez",
-                "Libro de Java", 20.0, "1234567890",
-                "1 semana");
-        Producto producto2 = new Producto("67890", "María López",
-                "libro de python", 30.0, "9876543210",
-                "1 mes");
+        // Crear productos con precios diferentes
+        Producto producto1 = new Producto("12345", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        Producto producto2 = new Producto("67890", "María López", "libro de python", 30.0, "9876543210", "1 mes");
 
         Producto.agregarProducto(producto1);
         Producto.agregarProducto(producto2);
 
+        // Buscar productos en un rango de precios
         List<Producto> resultados = Producto.buscarProductosPorPrecio(20, 30);
-        assertEquals(2, resultados.size());
+        assertEquals(2, resultados.size());  // Espera encontrar dos productos
 
         resultados = Producto.buscarProductosPorPrecio(25, 30);
-        assertEquals(1, resultados.size());
+        assertEquals(1, resultados.size());  // Espera encontrar solo un producto
     }
 
     @Test
     public void crearProductoConExito() {
         System.out.println("Test 5");
-        Producto producto = new Producto("202020475", "Issac",
-                "Libro de Ingles", 15, "0983307662",
-                "1 semana");
-
+        // Crear un producto válido
+        Producto producto = new Producto("202020475", "Issac", "Libro de Ingles", 15, "0983307662", "1 semana");
+        // Este test solo verifica que no haya excepciones al crear el producto
     }
 
     @Test
     public void buscarProductosSimilares() {
         System.out.println("Test 6");
-        Producto producto1 = new Producto("202020475", "Kevin Donozo",
-                "Libro de Java", 20.0, "1234567890",
-                "1 semana");
-        Producto producto2 = new Producto("202020476", "María López",
-                "libro de Ingles Avanzado 1", 30.0, "9876543210",
-                "1 mes");
-        Producto producto3 = new Producto("202020477", "Juan Pérez",
-                "libro de Ingles Avanzado 2", 20.0, "1234567890",
-                "1 semana");
-        Producto producto4 = new Producto("202020478", "Issac DLC",
-                "libro de Ingles Basico 1", 30.0, "9876543210",
-                "1 mes");
+        // Crear varios productos y agregarlos
+        Producto producto1 = new Producto("202020475", "Kevin Donozo", "Libro de Java", 20.0, "1234567890", "1 semana");
+        Producto producto2 = new Producto("202020476", "María López", "libro de Ingles Avanzado 1", 30.0, "9876543210", "1 mes");
+        Producto producto3 = new Producto("202020477", "Juan Pérez", "libro de Ingles Avanzado 2", 20.0, "1234567890", "1 semana");
+        Producto producto4 = new Producto("202020478", "Issac DLC", "libro de Ingles Basico 1", 30.0, "9876543210", "1 mes");
 
         Producto.agregarProducto(producto1);
         Producto.agregarProducto(producto2);
         Producto.agregarProducto(producto3);
         Producto.agregarProducto(producto4);
 
+        // Buscar productos cuyo nombre contenga la palabra "ingle"
         List<Producto> resultados = Producto.buscarProductosPorNombre("ingle");
-        assertEquals(3, resultados.size());
-        // Imprimir los resultados para verificar
+        assertEquals(3, resultados.size());  // Espera encontrar tres productos
+        // Imprimir los resultados para verificar que los productos encontrados son correctos
         for (Producto producto : resultados) {
             System.out.println(producto.getNombreProducto());
         }
@@ -133,45 +123,43 @@ public class ProductoTest {
     @Test
     public void crear2ProductosIdenticos() {
         System.out.println("Test 7");
-        Producto producto1 = new Producto("202020475", "Juan Pérez",
-                "Libro de Java", 20.0, "1234567890",
-                "1 semana");
-        Producto producto2 = new Producto("202020477", "Juan Pérez",
-                "Libro de Java", 20.0, "1234567890",
-                "1 semana");
+        // Crear dos productos idénticos y agregarlos
+        Producto producto1 = new Producto("202020475", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        Producto producto2 = new Producto("202020477", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
         Producto.agregarProducto(producto1);
         Producto.agregarProducto(producto2);
 
-        // Verifica que el tamaño de la lista sea 2
-        assertEquals(2, Producto.obtenerProductos().size());
+        // Verificar que la lista contenga ambos productos
+        assertEquals(2, Producto.obtenerProductos().size());  // Espera que la lista tenga dos productos
 
-        // Obtén los productos de la lista y verifica que ambos estén presentes
+        // Verificar que ambos productos estén presentes en la lista
         List<Producto> productos = Producto.obtenerProductos();
         assertTrue(productos.contains(producto1));
         assertTrue(productos.contains(producto2));
-
     }
 
     @Test
     public void crearProductoSinNumeroContacto() {
         System.out.println("Test 8");
+        // Intentar crear un producto sin número de contacto
         try {
-            Producto producto1 = new Producto("2020204759", "Juan Pérez",
-                    "Libro de Java", 20.0, "",
-                    "1 semana");
-            assertFalse(Producto.validarProducto(producto1));
+            Producto producto1 = new Producto("2020204759", "Juan Pérez", "Libro de Java", 20.0, "", "1 semana");
+            assertFalse(Producto.validarProducto(producto1));  // Espera que el producto no sea válido
         }
         catch (Exception e) {
             System.out.println("Error al validar el producto: " + e.getMessage());
         }
     }
+
     @AfterEach
     public void tearDown() {
         System.out.println("tearDown()");
+        // Limpieza después de cada prueba
     }
 
     @AfterClass
     public static void tearDownClass() {
         System.out.println("tearDownClass()");
+        // Limpieza después de todas las pruebas
     }
 }

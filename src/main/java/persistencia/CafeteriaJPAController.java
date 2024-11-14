@@ -46,8 +46,8 @@ public class CafeteriaJPAController implements Serializable {
 
             // Limpiar posibles problemas de codificación
             for (Cafeteria cafeteria : menu) {
-                cafeteria.setNombreMenu(new String(cafeteria.getNombreMenu().getBytes("ISO-8859-1"), "UTF-8"));
-                cafeteria.setDescripcionMenu(new String(cafeteria.getDescripcionMenu().getBytes("ISO-8859-1"), "UTF-8"));
+                cafeteria.setNombreMenu(new String(cafeteria.getNombreMenu().getBytes("Windows-1252"), "UTF-8"));
+                cafeteria.setDescripcionMenu(new String(cafeteria.getDescripcionMenu().getBytes("Windows-1252"), "UTF-8"));
             }
 
             return menu;

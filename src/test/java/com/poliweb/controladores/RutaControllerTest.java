@@ -3,10 +3,8 @@ package com.poliweb.controladores;
 import static org.mockito.Mockito.*;
 
 import com.poliweb.modelo.Ruta;
-import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
 import persistencia.RutaJpaController;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +40,10 @@ public class RutaControllerTest {
 
     @Test
     public void testDoGetExitoso() throws Exception {
-        // Crear datos simulados
+        // Crear datos simulados con todos los parámetros del constructor
         List<Ruta> rutasSimuladas = new ArrayList<>();
-        rutasSimuladas.add(new Ruta(1L, "Ruta 1", "Parada 1", "10:00 AM"));
-        rutasSimuladas.add(new Ruta(2L, "Ruta 2", "Parada 2", "11:00 AM"));
+        rutasSimuladas.add(new Ruta(1L, "Ruta 1", "Parada 1", "10:00 AM", "Teatro", "https://linkalmapa1.com"));
+        rutasSimuladas.add(new Ruta(2L, "Ruta 2", "Parada 2", "11:00 AM", "Sistemas", "https://linkalmapa2.com"));
 
         // Configurar el mock para devolver los datos simulados
         when(mockRutaJpaController.obtenerTodasLasRutas()).thenReturn(rutasSimuladas);
@@ -72,7 +69,4 @@ public class RutaControllerTest {
         // Verificar que se envió el error correctamente
         verify(response).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la consulta");
     }
-
-
-
 }

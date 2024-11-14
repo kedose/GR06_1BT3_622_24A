@@ -15,7 +15,7 @@
 <div class="space-y-8">
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <div class="flex items-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 mr-3" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10-10-4.477-10-10S6.477 2 12 2zM12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"></path></svg>
+            <img src="${pageContext.request.contextPath}/imagenes/AEIS.png" alt="Logo AEIS" class="mr-3 rounded-full" width="32" height="32">
             <div>
                 <h2 class="text-2xl font-bold">AEIS - Asociación de Estudiantes de Ingeniería en Sistemas</h2>
                 <p class="text-gray-600">Únete a nuestra comunidad y disfruta de beneficios exclusivos</p>

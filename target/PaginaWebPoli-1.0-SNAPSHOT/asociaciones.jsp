@@ -95,7 +95,8 @@
                     // Actualizar la clase del plan seleccionado (opcional)
                     $("div[id^='plan-']").removeClass('border-blue-500 ring-2 ring-blue-500').addClass('border-gray-200');
                     $("#plan-" + planId).removeClass('border-gray-200').addClass('border-blue-500 ring-2 ring-blue-500');
-                },
+                    document.getElementById("payment-info-container").scrollIntoView({ behavior: 'smooth' });
+                    },
                 error: function() {
                     alert('Hubo un error al seleccionar el plan.');
                 }

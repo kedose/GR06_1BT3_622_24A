@@ -47,6 +47,17 @@ public class CafeteriaJPAController implements Serializable {
             e.printStackTrace();
             return null;
         }
+    }public List<Cafeteria> obtenerMenuPorTipo(String tipoMenu) {
+        try {
+            Query query = em.createQuery("SELECT c FROM Cafeteria c WHERE c.tipoMenu = :tipoMenu");
+            query.setParameter("tipoMenu", tipoMenu);
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
+
+
 
 }

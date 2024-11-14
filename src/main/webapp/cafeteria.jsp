@@ -15,30 +15,60 @@
         <h2 class="text-2xl font-bold mb-4">Cafetería EPN</h2>
         <p class="mb-4">Disfruta de nuestro variado menú en la cafetería de la universidad:</p>
 
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                <tr>
-                    <th>Nombre del Menú</th>
-                    <th>Descripción</th>
-                    <th>Tipo</th>
-                    <th>Precio</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="item" items="${menuItems}">
-                    <tr>
-                        <td><c:out value="${item.nombreMenu}" /></td>
-                        <td><c:out value="${item.descripcionMenu}" /></td>
-                        <td><c:out value="${item.tipoMenu}" /></td>
-                        <td><c:out value="${item.precio}" /></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4" onclick="mostrarMenu('Desayuno')">
+                    <div class="card-header">Desayuno</div>
+                    <div class="card-body">
+                        <p>Horario de servicio: 7:00 AM - 10:00 AM</p>
+                        <ul id="desayuno-list" class="list-group d-none">
+                            <%-- Los elementos de la lista de desayuno se agregarán aquí --%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4" onclick="mostrarMenu('Almuerzo')">
+                    <div class="card-header">Almuerzo</div>
+                    <div class="card-body">
+                        <p>Horario de servicio: 12:00 PM - 3:00 PM</p>
+                        <ul id="almuerzo-list" class="list-group d-none">
+                            <%-- Los elementos de la lista de almuerzo se agregarán aquí --%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function mostrarMenu(tipoMenu) {
+        const listaId = tipoMenu.toLowerCase() + '-list';
+        const lista = document.getElementById(listaId);
+
+        if (lista.classList.contains('d-none')) {
+            // Obtener los elementos del menú de la cafetería mediante AJAX
+            fetch('cafeteria?tipoMenu=' + tipoMenu)
+                .then(response => response.json())
+                .then(data => {
+                    lista.innerHTML = ''; // Limpiar la lista antes de agregar elementos
+
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item';
+                        li.innerHTML = `<b>${item.nombreMenu}</b><br>${item.descripcionMenu}<br>Precio: ${item.precio}`;
+                        lista.appendChild(li);
+                    });
+
+                    lista.classList.remove('d-none'); // Mostrar la lista
+                })
+                .catch(error => console.error('Error al obtener el menú:', error));
+        } else {
+            lista.classList.add('d-none'); // Ocultar la lista
+        }
+    }
+</script>
 
 <!-- jQuery (debe estar antes de Bootstrap JS) -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

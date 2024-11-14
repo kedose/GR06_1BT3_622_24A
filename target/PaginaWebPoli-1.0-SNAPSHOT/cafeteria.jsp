@@ -15,31 +15,46 @@
         <h2 class="text-2xl font-bold mb-4">Cafetería EPN</h2>
         <p class="mb-4">Disfruta de nuestro variado menú en la cafetería de la universidad:</p>
 
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                <tr>
-                    <th>Nombre del Menú</th>
-                    <th>Descripción</th>
-                    <th>Tipo</th>
-                    <th>Precio</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="item" items="${menuItems}">
-                    <tr>
-                        <td><c:out value="${item.nombreMenu}" /></td>
-                        <td><c:out value="${item.descripcionMenu}" /></td>
-                        <td><c:out value="${item.tipoMenu}" /></td>
-                        <td><c:out value="${item.precio}" /></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Desayuno</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <c:forEach var="item" items="${menuItems}">
+                                <c:if test="${item.tipoMenu == 'Desayuno'}">
+                                    <li class="list-group-item">
+                                        <b><c:out value="${item.nombreMenu}" /></b><br>
+                                        <c:out value="${item.descripcionMenu}" /><br>
+                                        Precio: <c:out value="${item.precio}" />
+                                    </li>
+                                </c:if>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Almuerzo</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <c:forEach var="item" items="${menuItems}">
+                                <c:if test="${item.tipoMenu == 'Almuerzo'}">
+                                    <li class="list-group-item">
+                                        <b><c:out value="${item.nombreMenu}" /></b><br>
+                                        <c:out value="${item.descripcionMenu}" /><br>
+                                        Precio: <c:out value="${item.precio}" />
+                                    </li>
+                                </c:if>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 <!-- jQuery (debe estar antes de Bootstrap JS) -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- Popper.js -->

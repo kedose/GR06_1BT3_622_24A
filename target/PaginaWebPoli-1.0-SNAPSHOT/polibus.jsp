@@ -9,59 +9,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polibus - Portal Estudiantil EPN</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Incluimos jQuery -->
 </head>
-<body>
-<div class="container my-4">
-    <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-4">Polibus</h2>
-        <p class="mb-4">El Polibus es el servicio de transporte para estudiantes de la EPN. Aquí puedes encontrar información sobre las rutas disponibles:</p>
-        <div class="mb-4">
-            <input type="text" id="searchInput" class="form-control" placeholder="Buscar ruta por nombre o paradas" onkeyup="filtrarRutas()">
-        </div>
 
-        <p>Total de rutas: <c:out value="${not empty rutas ? rutas.size() : 0}" /></p>
+<body class="bg-gray-50">
+<!-- Contenido de la página -->
+<div class="space-y-8">
+    <!-- Contenedor principal -->
+    <div class="container mx-auto px-4">
+        <!-- Encabezado -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">Polibus</h2>
+            <p class="mb-4">El Polibus es el servicio de transporte para estudiantes de la EPN. Aquí puedes encontrar información sobre las rutas disponibles:</p>
+            <div class="mb-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar ruta por nombre o paradas" onkeyup="filtrarRutas()">
+            </div>
 
-        <div class="table-responsive">
-            <table class="table table-bordered" id="rutasTable">
-                <thead class="thead-light">
-                <tr>
-                    <th>Ruta</th>
-                    <th>Paradas</th>
-                    <th>Horario</th>
-                    <th>Ubicación</th>
-                    <th>Mapa</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:choose>
-                    <c:when test="${not empty rutas}">
-                        <c:forEach var="ruta" items="${rutas}">
+            <!-- Información sobre el total de rutas -->
+            <p class="text-lg font-semibold text-gray-700">
+                <span class="text-blue-600">Total de rutas:</span>
+                <span class="font-bold">${not empty rutas ? rutas.size() : 0}</span>
+            </p>
+
+            <!-- Tabla de rutas -->
+            <div class="table-responsive">
+                <table class="table table-bordered" id="rutasTable">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Ruta</th>
+                        <th>Paradas</th>
+                        <th>Horario</th>
+                        <th>Ubicación</th>
+                        <th>Mapa</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:choose>
+                        <c:when test="${not empty rutas}">
+                            <c:forEach var="ruta" items="${rutas}">
+                                <tr>
+                                    <td><c:out value="${ruta.nombreRuta}" /></td>
+                                    <td><c:out value="${ruta.paradas}" /></td>
+                                    <td><c:out value="${ruta.horario}" /></td>
+                                    <td><c:out value="${ruta.ubicacion}" /></td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="mostrarMapa(this)" data-url="${ruta.mapaUrl}">
+                                            Ver Mapa
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
                             <tr>
-                                <td><c:out value="${ruta.nombreRuta}" /></td>
-                                <td><c:out value="${ruta.paradas}" /></td>
-                                <td><c:out value="${ruta.horario}" /></td>
-                                <td><c:out value="${ruta.ubicacion}" /></td>
-                                <td>
-                                    <button class="btn btn-primary" onclick="mostrarMapa(this)" data-url="${ruta.mapaUrl}">
-                                        Ver Mapa
-                                    </button>
-                                </td>
+                                <td colspan="3">No se encontraron rutas.</td>
                             </tr>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <tr>
-                            <td colspan="3">No se encontraron rutas.</td>
-                        </tr>
-                    </c:otherwise>
-                </c:choose>
-                </tbody>
-            </table>
-        </div>
+                        </c:otherwise>
+                    </c:choose>
+                    </tbody>
+                </table>
+            </div>
 
-        <div id="mapaContainer" class="my-4">
-            <h3 class="text-2xl font-bold mb-4">Mapa de la Ruta Seleccionada</h3>
-            <iframe id="mapaRuta" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <!-- Contenedor para el mapa de la ruta -->
+            <div id="mapaContainer" class="my-4" style="display: none;">
+                <!-- Mapa de la ruta seleccionada -->
+                <h3 class="text-2xl font-bold mb-4">Mapa de la Ruta</h3>
+                <iframe id="mapaRuta" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                <!-- Botón para cerrar el mapa centrado y alineado verticalmente -->
+                <div class="flex justify-center items-center mt-4">
+                    <button class="btn btn-secondary" onclick="document.getElementById('mapaContainer').style.display = 'none';">
+                        Cerrar Mapa
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -94,8 +116,16 @@
 
     function mostrarMapa(button) {
         const mapaIframe = document.getElementById('mapaRuta');
+        const mapaContainer = document.getElementById('mapaContainer');
         const url = button.getAttribute('data-url');
+
+        // Mostrar el contenedor del mapa y cargar la URL en el iframe
         mapaIframe.src = url;
+
+        // Mostrar el contenedor del mapa
+        mapaContainer.style.display = 'block';
+
+        // Hacer scroll hacia el contenedor del mapa
         document.getElementById('mapaContainer').scrollIntoView({ behavior: 'smooth' });
     }
 </script>

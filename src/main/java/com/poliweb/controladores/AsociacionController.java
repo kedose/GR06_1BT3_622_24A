@@ -28,6 +28,7 @@ public class AsociacionController extends HttpServlet {
             request.setAttribute("selectedPlan", selectedPlan); // Enviar al JSP
         }
 
+        //envía la solicitud y la respuesta actuales a asociaciones.jsp
         request.getRequestDispatcher("/asociaciones.jsp").forward(request, response);
     }
 

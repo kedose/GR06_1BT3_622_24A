@@ -16,7 +16,14 @@ CREATE TABLE IF NOT EXISTS cafeteria (
 INSERT INTO `cafeteria` VALUES
                             (1,'Desayuno Continental', 'Incluye jugo de naranja, huevos fritos y café con pan.', 2.50, 'Desayuno'),
                             (2,'Ensalada César', 'Lechuga, pollo a la parrilla, aderezo César y crutones.', 3.50, 'Almuerzo'),
-                            (3,'Limonada', 'Bebida refrescante de limón natural.', 1.00, 'Bebida');
+                            (3,'Limonada', 'Bebida refrescante de limón natural.', 1.00, 'Bebida'),
+                            (4,'Pan de Yuca', 'Delicioso pan de yuca recién horneado.', 1.50, 'Bebida'),
+                            (5,'Mote con chicharrón', 'Plato típico con mote, chicharrón y ensalada.', 3.75, 'Almuerzo'),
+                            (6,'Café con leche', 'Café espresso con leche vaporizada.', 1.25, 'Bebida'),
+                            (7,'Torta de Elote', 'Torta de maíz dulce, tradicional en Ecuador.', 2.00, 'Postre'),
+                            (8,'Empanada de viento', 'Empanada rellena con aire, frita y crujiente.', 1.00, 'Bebida'),
+                            (9,'Fritada', 'Cerdo frito con mote, ensalada y plátano maduro.', 4.00, 'Almuerzo'),
+                            (10,'Aguacate relleno', 'Aguacate con atún, cebolla, tomate y mayonesa.', 2.50, 'Almuerzo');
 
 
 

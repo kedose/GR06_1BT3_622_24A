@@ -1,7 +1,6 @@
 package com.poliweb.controladores;
 
 import com.poliweb.modelo.Cafeteria;
-import com.poliweb.modelo.Ruta;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import persistencia.CafeteriaJPAController;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/cafeteria")
 public class CafeteriaController extends HttpServlet {
@@ -36,11 +36,25 @@ public class CafeteriaController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
 
             List<Cafeteria> menuItems = obtenerMenu();
-            pasarAtributosYDespachar(request, response, menuItems);
+
+            // Filtrar por tipo de menú
+            List<Cafeteria> desayunos = menuItems.stream().filter(item -> "Desayuno".equals(item.getTipoMenu())).collect(Collectors.toList());
+            List<Cafeteria> almuerzos = menuItems.stream().filter(item -> "Almuerzo".equals(item.getTipoMenu())).collect(Collectors.toList());
+            List<Cafeteria> bebidasYSnacks = menuItems.stream()
+                    .filter(item -> !"Almuerzo".equals(item.getTipoMenu()) && !"Desayuno".equals(item.getTipoMenu()))
+                    .collect(Collectors.toList());
+
+            // Enviar los atributos al JSP
+            request.setAttribute("desayunos", desayunos);
+            request.setAttribute("almuerzos", almuerzos);
+            request.setAttribute("bebidasYSnacks", bebidasYSnacks);
+
+            request.getRequestDispatcher(CAFETERIA_JSP).forward(request, response);
         } catch (Exception e) {
-            e.printStackTrace();  // Agrega esto para capturar posibles errores
+            e.printStackTrace(); // Captura errores
         }
     }
+
 
 
     private void pasarAtributosYDespachar(HttpServletRequest request, HttpServletResponse response, List<Cafeteria> menuItems) throws ServletException, IOException {

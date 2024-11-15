@@ -61,12 +61,8 @@ public class CafeteriaJPAController implements Serializable {
     public List<Cafeteria> obtenerMenu() {
         EntityManager em = getEntityManager();
         try {
-            logger.info("Iniciando la consulta para obtener el menú.");
-
             Query query = em.createQuery("SELECT r FROM Cafeteria r");
             List<Cafeteria> menu = query.getResultList();
-
-            logger.info("Menú obtenido con éxito. Total de elementos: " + menu.size());
 
             // Limpiar posibles problemas de codificación
             for (Cafeteria cafeteria : menu) {

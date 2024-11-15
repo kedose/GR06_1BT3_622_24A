@@ -1,51 +1,101 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.poliweb.modelo.Cafeteria" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafetería EPN</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Incluimos jQuery -->
+    <script>
+        function toggleDescription(itemName) {
+            const descriptionElement = document.getElementById(itemName);
+            const iconElement = document.getElementById(itemName + '-icon');
+
+            if (descriptionElement.style.display === "none" || descriptionElement.style.display === "") {
+                descriptionElement.style.display = "block";
+                iconElement.innerHTML = "▲"; // Change to up arrow
+            } else {
+                descriptionElement.style.display = "none";
+                iconElement.innerHTML = "▼"; // Change to down arrow
+            }
+        }
+    </script>
 </head>
 <body>
-<div class="container my-4">
-    <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-4">Cafetería EPN</h2>
-        <p class="mb-4">Disfruta de nuestro variado menú en la cafetería de la universidad:</p>
+<div class="space-y-6">
+    <div class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-2xl font-bold text-blue-800 mb-2">Cafetería EPN</h2>
+        <p class="text-blue-600">Disfruta de nuestro variado menú con opciones nutritivas y deliciosas</p>
+    </div>
 
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                <tr>
-                    <th>Nombre del Menú</th>
-                    <th>Descripción</th>
-                    <th>Tipo</th>
-                    <th>Precio</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="item" items="${menuItems}">
-                    <tr>
-                        <td><c:out value="${item.nombreMenu}" /></td>
-                        <td><c:out value="${item.descripcionMenu}" /></td>
-                        <td><c:out value="${item.tipoMenu}" /></td>
-                        <td><c:out value="${item.precio}" /></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+    <!-- Desayunos -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-bold">Desayunos</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <c:forEach var="item" items="${desayunos}">
+                <div class="border rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold">${item.nombreMenu}</span>
+                        <span class="text-green-600 font-bold">${item.precio}</span>
+                    </div>
+                    <button class="flex items-center text-sm text-blue-500 hover:text-blue-700 transition-colors" onclick="toggleDescription('${item.nombreMenu}')">
+                        <span id="${item.nombreMenu}-icon">▼</span>
+                        Ver descripción
+                    </button>
+                    <p id="${item.nombreMenu}" class="mt-2 text-gray-600 text-sm bg-gray-50 p-2 rounded" style="display:none;">
+                            ${item.descripcionMenu}
+                    </p>
+                </div>
+            </c:forEach>
         </div>
     </div>
-</div>
 
-<!-- jQuery (debe estar antes de Bootstrap JS) -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Almuerzos -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-bold">Almuerzos</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <c:forEach var="item" items="${almuerzos}">
+                <div class="border rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold">${item.nombreMenu}</span>
+                        <span class="text-green-600 font-bold">${item.precio}</span>
+                    </div>
+                    <button class="flex items-center text-sm text-blue-500 hover:text-blue-700 transition-colors" onclick="toggleDescription('${item.nombreMenu}')">
+                        <span id="${item.nombreMenu}-icon">▼</span>
+                        Ver descripción
+                    </button>
+                    <p id="${item.nombreMenu}" class="mt-2 text-gray-600 text-sm bg-gray-50 p-2 rounded" style="display:none;">
+                            ${item.descripcionMenu}
+                    </p>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+
+    <!-- Bebidas y Snacks -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-bold">Bebidas y Snacks</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <c:forEach var="item" items="${bebidasYSnacks}">
+                <div class="border rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold">${item.nombreMenu}</span>
+                        <span class="text-green-600 font-bold">${item.precio}</span>
+                    </div>
+                    <button class="flex items-center text-sm text-blue-500 hover:text-blue-700 transition-colors" onclick="toggleDescription('${item.nombreMenu}')">
+                        <span id="${item.nombreMenu}-icon">▼</span>
+                        Ver descripción
+                    </button>
+                    <p id="${item.nombreMenu}" class="mt-2 text-gray-600 text-sm bg-gray-50 p-2 rounded" style="display:none;">
+                            ${item.descripcionMenu}
+                    </p>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

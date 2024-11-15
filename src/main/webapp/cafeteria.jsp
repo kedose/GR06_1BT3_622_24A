@@ -38,7 +38,7 @@
                 <div class="border rounded-lg p-4">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold">${item.nombreMenu}</span>
-                        <span class="text-green-600 font-bold">${item.precio}</span>
+                        <span class="text-green-600 font-bold">${item.precioFormateado}</span>
                     </div>
                     <button class="flex items-center text-sm text-blue-500 hover:text-blue-700 transition-colors" onclick="toggleDescription('${item.nombreMenu}')">
                         <span id="${item.nombreMenu}-icon">▼</span>
@@ -60,7 +60,7 @@
                 <div class="border rounded-lg p-4">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold">${item.nombreMenu}</span>
-                        <span class="text-green-600 font-bold">${item.precio}</span>
+                        <span class="text-green-600 font-bold">${item.precioFormateado}</span>
                     </div>
                     <button class="flex items-center text-sm text-blue-500 hover:text-blue-700 transition-colors" onclick="toggleDescription('${item.nombreMenu}')">
                         <span id="${item.nombreMenu}-icon">▼</span>
@@ -82,7 +82,7 @@
                 <div class="border rounded-lg p-4">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold">${item.nombreMenu}</span>
-                        <span class="text-green-600 font-bold">${item.precio}</span>
+                        <span class="text-green-600 font-bold">${item.precioFormateado}</span>
                     </div>
                     <button class="flex items-center text-sm text-blue-500 hover:text-blue-700 transition-colors" onclick="toggleDescription('${item.nombreMenu}')">
                         <span id="${item.nombreMenu}-icon">▼</span>

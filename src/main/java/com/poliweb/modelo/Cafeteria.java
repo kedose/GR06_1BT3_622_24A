@@ -2,6 +2,8 @@ package com.poliweb.modelo;
 
 import jakarta.persistence.*;
 
+import java.text.DecimalFormat;
+
 @Entity
 @Table(name = "cafeteria") // Indica que esta entidad corresponde a la tabla 'cafeteria'
 public class Cafeteria {
@@ -62,6 +64,11 @@ public class Cafeteria {
 
     public void setNombreMenu(String nombreMenu) {
         this.nombreMenu = nombreMenu;
+    }
+
+    public String getPrecioFormateado() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        return decimalFormat.format(precio);
     }
 
     @Override

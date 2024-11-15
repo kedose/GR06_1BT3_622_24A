@@ -82,7 +82,7 @@
           <p class="text-2xl font-bold text-green-600 mb-2">$${product.precioProducto}</p>
           <div class="space-y-1 text-sm text-gray-600">
             <p>${product.nombreEstudiante}</p>
-            <p>${product.numeroContacto}</p>
+            <p><a href="https://wa.me/593${product.numeroContacto}" target="_blank" class="text-blue-500 hover:underline">${product.numeroContacto}</a></p>
             <p>${product.codigoEstudiante}</p>
           </div>
         </div>
@@ -99,7 +99,7 @@
             <p class="text-2xl font-bold text-green-600 mb-2">$1</p>
             <div class="space-y-1 text-sm text-gray-600">
               <p>Estudiante de Prueba</p>
-              <p>1234567890</p>
+              <p><a href="https://wa.me/5930999201326" target="_blank" class="text-blue-500 hover:underline">0999201326</a></p>
               <p>1</p>
             </div>
           </div>
@@ -156,7 +156,7 @@
             <p class="text-2xl font-bold text-green-600 mb-2">\$\${newProduct.precioProducto}</p>
             <div class="space-y-1 text-sm text-gray-600">
                 <p>\${newProduct.nombreEstudiante}</p>
-                <p>\${newProduct.numeroContacto}</p>
+                <p><a href="https://wa.me/593\${newProduct.numeroContacto}" target="_blank" class="text-blue-500 hover:underline">\${newProduct.numeroContacto}</a></p>
                 <p>\${newProduct.tiempoVisualizacion}</p>
             </div>
         </div>

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Producto {
+
+    // Atributos estáticos
     private static List<Producto> listaProductos = new ArrayList<>(); // Lista estática para almacenar productos
 
+    // Atributos de instancia
     private String codigoEstudiante;
     private String nombreEstudiante;
     private String nombreProducto;
@@ -13,6 +16,7 @@ public class Producto {
     private String numeroContacto;
     private String tiempoVisualizacion;
 
+    // Constructor
     public Producto(String codigoEstudiante, String nombreEstudiante, String nombreProducto, double precioProducto, String numeroContacto, String tiempoVisualizacion) {
         this.codigoEstudiante = codigoEstudiante;
         this.nombreEstudiante = nombreEstudiante;
@@ -22,6 +26,7 @@ public class Producto {
         this.tiempoVisualizacion = tiempoVisualizacion;
     }
 
+    // Métodos estáticos para gestión de productos
     public static void limpiarProductos() {
         listaProductos.clear();
     }
@@ -39,7 +44,7 @@ public class Producto {
     public static List<Producto> buscarProductosPorNombre(String nombre) throws NoProductosEncontradosException {
         List<Producto> resultados = new ArrayList<>();
         for (Producto producto : listaProductos) {
-            if (producto.getNombreProducto().toLowerCase().contains(nombre.toLowerCase())) { // Corrección aquí
+            if (producto.getNombreProducto().toLowerCase().contains(nombre.toLowerCase())) {
                 resultados.add(producto);
             }
         }
@@ -66,28 +71,22 @@ public class Producto {
         if (producto == null) {
             throw new ProductoException("El producto no puede ser nulo");
         }
-
         if (producto.getCodigoEstudiante() == null || producto.getCodigoEstudiante().isEmpty()) {
             throw new ProductoException("El código de estudiante es obligatorio");
         }
-
         // Validación del formato del código de estudiante (ejemplo: solo números)
         if (!producto.getCodigoEstudiante().matches("\\d{9}")) {
-            throw new ProductoException("El código de estudiante debe tener exactamente 9 dígitos numericos");
+            throw new ProductoException("El código de estudiante debe tener exactamente 9 dígitos numéricos");
         }
-        // Otras validaciones, por ejemplo:
         if (producto.getNombreProducto() == null || producto.getNombreProducto().isEmpty()) {
             throw new ProductoException("El nombre del producto es obligatorio");
         }
-
         if (producto.getPrecioProducto() <= 0) {
             throw new ProductoException("El precio del producto debe ser positivo");
         }
-
         if (producto.getNumeroContacto() == null || producto.getNumeroContacto().isEmpty()) {
             throw new ProductoException("El número de contacto es obligatorio");
         }
-
         if (producto.getTiempoVisualizacion() == null || producto.getTiempoVisualizacion().isEmpty()) {
             throw new ProductoException("El tiempo de visualización es obligatorio");
         }
@@ -102,6 +101,7 @@ public class Producto {
     public String getNumeroContacto() { return numeroContacto; }
     public String getTiempoVisualizacion() { return tiempoVisualizacion; }
 
+    // Método toString
     @Override
     public String toString() {
         return "Producto{" +
@@ -115,6 +115,7 @@ public class Producto {
     }
 }
 
+// Excepciones personalizadas
 class ProductoException extends RuntimeException {
     public ProductoException(String message) {
         super(message);
@@ -126,5 +127,3 @@ class NoProductosEncontradosException extends RuntimeException {
         super(mensaje);
     }
 }
-
-

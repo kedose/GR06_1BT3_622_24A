@@ -13,7 +13,8 @@ public class PoliMercadoController extends HttpServlet {
     // Sobrescribe el método doGet para manejar solicitudes GET al servlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        // Redirige la solicitud y la respuesta a la página comprayventa.jsp
+        // para mostrar la interfaz relacionada con compra y venta
         request.getRequestDispatcher("/comprayventa.jsp").forward(request, response);
     }
 }

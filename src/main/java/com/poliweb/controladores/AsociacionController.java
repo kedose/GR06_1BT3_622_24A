@@ -60,11 +60,17 @@ public class AsociacionController extends HttpServlet {
                     .append("\"caracteristicas\": [");
 
             for (int i = 0; i < planSeleccionado.getFeatures().size(); i++) {
+                // Agrega cada característica (feature) del plan seleccionado al StringBuilder jsonResponse
+                // rodeada de comillas dobles para formatear como JSON
                 jsonResponse.append("\"").append(planSeleccionado.getFeatures().get(i)).append("\"");
+
+                // Si la característica actual no es la última, agrega una coma y un espacio
+                // para separar las características en el formato JSON
                 if (i < planSeleccionado.getFeatures().size() - 1) {
                     jsonResponse.append(", ");
                 }
             }
+
 
             jsonResponse.append("]")
                     .append("}}");
@@ -98,8 +104,4 @@ public class AsociacionController extends HttpServlet {
         // Se devuelve la lista completa de planes
         return planes;
     }
-
-
-
-
 }

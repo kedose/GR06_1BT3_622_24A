@@ -26,6 +26,7 @@ public class RutaController extends HttpServlet {
     }
 
     public RutaController(RutaJpaController controladoraPersistencia) {
+        // Asigna la instancia del controlador de persistencia proporcionada al atributo de la clase
         this.controladoraPersistencia = controladoraPersistencia;
     }
 

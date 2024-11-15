@@ -100,12 +100,12 @@
             <p>Espacios de alimentación con menús variados y saludables, disponibles para toda la comunidad.</p>
         </div>
         <div class="card">
-            <h2><i class="fas fa-handshake icon"></i>Asociaciones</h2>
-            <p>Grupos estudiantiles y asociaciones para fomentar el crecimiento académico y personal de los estudiantes.</p>
+            <h2><i class="fas fa-handshake icon"></i>Asociación</h2>
+            <p>Grupo estudiantil para fomentar el crecimiento académico y personal de los estudiantes.</p>
         </div>
         <div class="card">
-            <h2><i class="fas fa-users icon"></i>Área Social</h2>
-            <p>Espacios recreativos y de esparcimiento para el bienestar de la comunidad universitaria.</p>
+            <h2><i class="fas fa-users icon"></i>Polimarket</h2>
+            <p>Espacios para comprar y vender productos.</p>
         </div>
     </div>
     <div class="section-title">Misión y Visión</div>

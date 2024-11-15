@@ -1,5 +1,6 @@
 package com.poliweb.controladores;
 
+import com.poliweb.modelo.Plan;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,168 +9,84 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/asociaciones")
 public class AsociacionController extends HttpServlet {
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Crear planes para AEIS
-        List<Asociacion.Plan> planesAEIS = new ArrayList<>();
-        planesAEIS.add(new Asociacion.Plan("Taller de programación", "Aprende los conceptos básicos de programación."));
-        planesAEIS.add(new Asociacion.Plan("Charlas sobre tecnología", "Charlas sobre las últimas tendencias tecnológicas."));
-        planesAEIS.add(new Asociacion.Plan("Apoyo académico", "Asesoría y tutorías para estudiantes de sistemas."));
+        List<Plan> planes = obtenerPlanes();
+        request.setAttribute("planes", planes);
 
+        // Obtener el plan seleccionado si existe en la solicitud
+        String selectedPlanId = request.getParameter("planId");
+        if (selectedPlanId != null && !selectedPlanId.isEmpty()) {
+            Plan selectedPlan = obtenerPlanes().stream()
+                    .filter(plan -> String.valueOf(plan.getId()).equals(selectedPlanId))
+                    .findFirst()
+                    .orElse(null);
+            request.setAttribute("selectedPlan", selectedPlan); // Enviar al JSP
+        }
 
-        // Crear la lista de asociaciones con sus datos
-        List<Asociacion> asociaciones = new ArrayList<>();
+        request.getRequestDispatcher("/asociaciones.jsp").forward(request, response);
+    }
 
-        asociaciones.add(new Asociacion("AEIO", null, null, null, null, null));
-        asociaciones.add(new Asociacion("E (Ing Electrica)", null, null, null, null, null));
-        asociaciones.add(new Asociacion("AEE-ICEF", null, null, null, null, null));
-        asociaciones.add(new Asociacion("ESFOT", null, null, null, null, null));
-        asociaciones.add(new Asociacion("AGROINDUSTRIAL", null, null, null, null, null));
-        asociaciones.add(new Asociacion(
-                "AEIS",
-                "La Asociación de Estudiantes de Ingeniería de Sistemas (AEIS) representa a los estudiantes de esta carrera.",
-                "contacto@aeis.epn.edu.ec",
-                "http://www.aeis.epn.edu.ec",
-                planesAEIS,
-                "Cuenta bancaria: Banco Pichincha, N° 1234567890"
-        ));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Manejo de solicitudes AJAX
+        String planId = request.getParameter("planId");
 
-        // Otras asociaciones sin detalles
-        asociaciones.add(new Asociacion("AEIE", null, null, null, null, null));
-        asociaciones.add(new Asociacion("ASO-MAT", null, null, null, null, null));
-        asociaciones.add(new Asociacion("AEIM", null, null, null, null, null));
-        asociaciones.add(new Asociacion("ING CIVIL", null, null, null, null, null));
-        asociaciones.add(new Asociacion("EFCA", null, null, null, null, null));
-        asociaciones.add(new Asociacion("ING AMBIENTAL", null, null, null, null, null));
-        asociaciones.add(new Asociacion("ING QUIMICA", null, null, null, null, null));
+        // Validación de que el parámetro 'planId' existe y es válido
+        if (planId == null || planId.isEmpty()) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("{\"success\": false, \"message\": \"Plan ID es requerido\"}");
+            return;
+        }
 
-        // Obtener la asociación seleccionada y la acción (mostrar planes o mostrar cuenta bancaria)
-        String asociacionSeleccionada = request.getParameter("asociacion");
-        String accion = request.getParameter("accion");
+        // Buscar el plan seleccionado
+        Plan planSeleccionado = obtenerPlanes().stream()
+                .filter(plan -> String.valueOf(plan.getId()).equals(planId))
+                .findFirst()
+                .orElse(null);
 
-        // Filtrar la asociación seleccionada si existe
-        Asociacion asociacionInfo = null;
-        if (asociacionSeleccionada != null) {
-            for (Asociacion asociacion : asociaciones) {
-                if (asociacion.getNombre().equals(asociacionSeleccionada)) {
-                    asociacionInfo = asociacion;
-                    break;
+        if (planSeleccionado != null) {
+            // Construir la respuesta JSON manualmente sin usar Gson
+            StringBuilder jsonResponse = new StringBuilder();
+            jsonResponse.append("{")
+                    .append("\"success\": true,")
+                    .append("\"producto\": {")
+                    .append("\"id\": ").append(planSeleccionado.getId()).append(",")
+                    .append("\"nombre\": \"").append(planSeleccionado.getName()).append("\",")
+                    .append("\"precio\": ").append(planSeleccionado.getPrice()).append(",")
+                    .append("\"caracteristicas\": [");
+
+            for (int i = 0; i < planSeleccionado.getFeatures().size(); i++) {
+                jsonResponse.append("\"").append(planSeleccionado.getFeatures().get(i)).append("\"");
+                if (i < planSeleccionado.getFeatures().size() - 1) {
+                    jsonResponse.append(", ");
                 }
             }
-        }
 
-        // Verificar si se debe mostrar la cuenta bancaria
-        boolean mostrarCuentaBancaria = "mostrarCuenta".equals(accion);
-        
+            jsonResponse.append("]")
+                    .append("}}");
 
-        // Pasar la lista de asociaciones, la asociación seleccionada y la bandera de la cuenta bancaria al JSP
-        request.setAttribute("asociaciones", asociaciones);
-        request.setAttribute("asociacionSeleccionada", asociacionInfo);
-        request.setAttribute("mostrarCuentaBancaria", mostrarCuentaBancaria);
-
-        request.getRequestDispatcher("asociaciones.jsp").forward(request, response);
-    }
-
-    // Clase para representar los datos de cada asociación
-    public static class Asociacion {
-        private String nombre;
-        private String descripcion;
-        private String email;
-        private String sitioWeb;
-        private List<Plan> planesEstudiantiles;
-        private String cuentaBancaria;
-
-        // Constructor
-        public Asociacion(String nombre, String descripcion, String email, String sitioWeb, List<Plan> planesEstudiantiles, String cuentaBancaria) {
-            this.nombre = nombre;
-            this.descripcion = descripcion;
-            this.email = email;
-            this.sitioWeb = sitioWeb;
-            this.planesEstudiantiles = planesEstudiantiles;
-            this.cuentaBancaria = cuentaBancaria;
-        }
-
-        // Getters y Setters
-        public String getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
-
-        public String getDescripcion() {
-            return descripcion;
-        }
-
-        public void setDescripcion(String descripcion) {
-            this.descripcion = descripcion;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getSitioWeb() {
-            return sitioWeb;
-        }
-
-        public void setSitioWeb(String sitioWeb) {
-            this.sitioWeb = sitioWeb;
-        }
-
-        public List<Plan> getPlanesEstudiantiles() {
-            return planesEstudiantiles;
-        }
-
-        public void setPlanesEstudiantiles(List<Plan> planesEstudiantiles) {
-            this.planesEstudiantiles = planesEstudiantiles;
-        }
-
-        public String getCuentaBancaria() {
-            return cuentaBancaria;
-        }
-
-        public void setCuentaBancaria(String cuentaBancaria) {
-            this.cuentaBancaria = cuentaBancaria;
-        }
-
-        // Clase interna Plan
-        public static class Plan {
-            private String nombre;
-            private String descripcion;
-
-            public Plan(String nombre, String descripcion) {
-                this.nombre = nombre;
-                this.descripcion = descripcion;
-            }
-
-            public String getNombre() {
-                return nombre;
-            }
-
-            public void setNombre(String nombre) {
-                this.nombre = nombre;
-            }
-
-            public String getDescripcion() {
-                return descripcion;
-            }
-
-            public void setDescripcion(String descripcion) {
-                this.descripcion = descripcion;
-            }
+            // Enviar la respuesta como JSON
+            response.setContentType("application/json");
+            response.getWriter().write(jsonResponse.toString());
+        } else {
+            // Si no se encuentra el plan con ese ID
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.getWriter().write("{\"success\": false, \"message\": \"Plan no encontrado\"}");
         }
     }
+
+    private List<Plan> obtenerPlanes() {
+        List<Plan> planes = new ArrayList<>();
+        planes.add(new Plan(1, "Plan Básico", 7.99, Arrays.asList("Acceso a eventos básicos", "Descuentos en tutorías", "Carnet de membresía")));
+        planes.add(new Plan(2, "Plan Estándar", 12.99, Arrays.asList("Todos los beneficios del Plan Básico", "Acceso a talleres exclusivos", "Descuentos en material didáctico", "Asesoría académica mensual")));
+        planes.add(new Plan(3, "Plan Premium", 19.99, Arrays.asList("Todos los beneficios del Plan Estándar", "Acceso prioritario a eventos", "Mentoría personalizada", "Networking con profesionales", "Descuentos especiales en cursos")));
+        return planes;
+    }
+
 
 
 }

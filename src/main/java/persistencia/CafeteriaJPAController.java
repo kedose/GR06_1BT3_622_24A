@@ -42,11 +42,20 @@ public class CafeteriaJPAController implements Serializable {
     public List<Cafeteria> obtenerMenu() {
         try {
             Query query = em.createQuery("SELECT c FROM Cafeteria c");
-            return query.getResultList();
+            List<Cafeteria> menu = query.getResultList();
+
+            // Limpiar posibles problemas de codificación
+            for (Cafeteria cafeteria : menu) {
+                cafeteria.setNombreMenu(new String(cafeteria.getNombreMenu().getBytes("Windows-1252"), "UTF-8"));
+                cafeteria.setDescripcionMenu(new String(cafeteria.getDescripcionMenu().getBytes("Windows-1252"), "UTF-8"));
+            }
+
+            return menu;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
 }

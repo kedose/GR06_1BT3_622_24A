@@ -46,9 +46,23 @@ public class RutaJpaController implements Serializable {
             Query query = em.createQuery("SELECT r FROM Ruta r");
             List<Ruta> rutas = query.getResultList();
 
-            logger.info("Número de rutas recuperadas: " + rutas.size());
+            // Limpiar posibles problemas de codificación en los atributos de las rutas
             for (Ruta ruta : rutas) {
-                logger.info("Ruta: " + ruta.getNombreRuta() + ", Paradas: " + ruta.getParadas() + ", Horario: " + ruta.getHorario());
+                if (ruta.getNombreRuta() != null) {
+                    ruta.setNombreRuta(new String(ruta.getNombreRuta().getBytes("Windows-1252"), "UTF-8"));
+                }
+                if (ruta.getParadas() != null) {
+                    ruta.setParadas(new String(ruta.getParadas().getBytes("Windows-1252"), "UTF-8"));
+                }
+                if (ruta.getHorario() != null) {
+                    ruta.setHorario(new String(ruta.getHorario().getBytes("Windows-1252"), "UTF-8"));
+                }
+                if (ruta.getUbicacion() != null) {
+                    ruta.setUbicacion(new String(ruta.getUbicacion().getBytes("Windows-1252"), "UTF-8"));
+                }
+                if (ruta.getMapaUrl() != null) {
+                    ruta.setMapaUrl(new String(ruta.getMapaUrl().getBytes("Windows-1252"), "UTF-8"));
+                }
             }
 
             return rutas;
@@ -59,6 +73,7 @@ public class RutaJpaController implements Serializable {
             em.close();
         }
     }
+
 
 
 

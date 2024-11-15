@@ -30,6 +30,7 @@ public class Ruta implements Serializable {
         this.mapa_url = mapa_url;
     }
 
+    //Getters y Setters
     public Long getIdBus() {
         return id_bus;
     }
@@ -78,6 +79,7 @@ public class Ruta implements Serializable {
         this.mapa_url = mapa_url;
     }
 
+    // Método toString
     @Override
     public String toString() {
         return "Nombre de la Ruta: " + ruta + ", Paradas: " + paradas + ", Horario: " + horario + ", Ubicación: " + ubicacion + ", Mapa URL: " + mapa_url;

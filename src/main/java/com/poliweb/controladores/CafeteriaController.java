@@ -20,6 +20,8 @@ public class CafeteriaController extends HttpServlet {
         // Llama al método init() de la clase superior para asegurarse de que cualquier configuración
         // adicional de la clase padre se ejecute correctamente
         super.init();
+
+        // Inicializa el controlador JPA para manejar operaciones relacionadas con la cafetería
         cafeteriaController = CafeteriaJPAController.getInstance(); // Inicializa el controlador JPA
     }
 

@@ -73,7 +73,6 @@ public class CafeteriaJPAController implements Serializable {
                 try {
                     cafeteria.setNombreMenu(new String(cafeteria.getNombreMenu().getBytes("Windows-1252"), "UTF-8"));
                     cafeteria.setDescripcionMenu(new String(cafeteria.getDescripcionMenu().getBytes("Windows-1252"), "UTF-8"));
-                    logger.fine("Codificación corregida para el menú: " + cafeteria.getNombreMenu());
                 } catch (Exception e) {
                     logger.log(Level.WARNING, "Error al corregir la codificación para el menú: " + cafeteria.getNombreMenu(), e);
                 }
@@ -85,7 +84,6 @@ public class CafeteriaJPAController implements Serializable {
             return null;
         } finally {
             em.close();  // Cerrar el EntityManager para liberar recursos
-            logger.info("EntityManager cerrado.");
         }
     }
 

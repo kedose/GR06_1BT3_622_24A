@@ -10,8 +10,10 @@ import java.io.IOException;
 
 @WebServlet("/polimarket")
 public class PoliMercadoController extends HttpServlet {
+    // Sobrescribe el método doGet para manejar solicitudes GET al servlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         request.getRequestDispatcher("/comprayventa.jsp").forward(request, response);
     }
 }

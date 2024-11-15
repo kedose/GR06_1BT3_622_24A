@@ -44,6 +44,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
+        // Función para obtener parámetros de la URL
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Función para mostrar la pestaña
         function showTab(tabName) {
             console.log("Cargando pestaña: " + tabName);
             let url = '';
@@ -81,11 +88,18 @@
             });
         }
 
-        // Mostrar la pestaña por defecto al cargar la página
+        // Mostrar la pestaña correspondiente al parámetro de la URL al cargar la página
         $(document).ready(function () {
-            showTab('polibus'); // Cargar la pestaña "polibus" al inicio
+            const tab = getUrlParameter('tab'); // Obtener el parámetro "tab" de la URL
+            if (tab) {
+                showTab(tab); // Llamar a showTab con el valor del parámetro
+            } else {
+                showTab('polibus'); // Si no hay parámetro, cargar el tab por defecto
+            }
         });
     </script>
+
+
 </head>
 <body>
 <div class="wrapper">

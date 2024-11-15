@@ -73,6 +73,18 @@
             text-align: center;
             font-size: 0.875rem;
         }
+
+        /* Cambiar el cursor a una mano al pasar el mouse por encima */
+        .card {
+            cursor: pointer; /* Cambia el cursor a la mano */
+            transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+        }
+
+        /* Cambiar el color de la tarjeta a un celeste claro cuando se pasa el mouse */
+        .card:hover {
+            background-color: #d1f1f8; /* Celeste claro */
+        }
+
     </style>
     <%@ include file="header.jsp" %>
 </head>
@@ -91,19 +103,19 @@
     <div class="separator"></div>
 
     <div class="grid">
-        <div class="card">
+        <div class="card" onclick="goToTab('polibus')">
             <h2><i class="fas fa-bus icon"></i>Polibus</h2>
             <p>Servicio de transporte interno para facilitar la movilidad de estudiantes y personal dentro del campus.</p>
         </div>
-        <div class="card">
+        <div class="card" onclick="goToTab('cafeteria')">
             <h2><i class="fas fa-coffee icon"></i>Cafetería</h2>
             <p>Espacios de alimentación con menús variados y saludables, disponibles para toda la comunidad.</p>
         </div>
-        <div class="card">
-            <h2><i class="fas fa-handshake icon"></i>Asociaciones</h2>
-            <p>Grupos estudiantiles y asociaciones para fomentar el crecimiento académico y personal de los estudiantes.</p>
+        <div class="card" onclick="goToTab('asociacion')">
+            <h2><i class="fas fa-handshake icon"></i>Asociación</h2>
+            <p>Grupo estudiantil para fomentar el crecimiento académico y personal de los estudiantes.</p>
         </div>
-        <div class="card">
+        <div class="card" onclick="goToTab('polimercado')">
             <h2><i class="fas fa-users icon"></i>Polimarket</h2>
             <p>Espacios para comprar y vender productos.</p>
         </div>
@@ -150,6 +162,17 @@
 
 
 </div>
+<script>
+    function goToTab(tabName) {
+        // Redirigir a la URL de Servicios y cargar el tab correspondiente
+        window.location.href = '/PaginaWebPoli/Servicios?tab=' + tabName;
+
+        // Esperar a que la página se haya cargado completamente antes de cargar el tab
+        setTimeout(function() {
+            showTab(tabName); // Llamar a la función showTab de index.jsp
+        }, 120); // Espera de 100ms para asegurar que la página se cargue
+    }
+</script>
 
 <footer class="footer">
     <%@ include file="footer.jsp" %>

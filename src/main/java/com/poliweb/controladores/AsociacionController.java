@@ -80,12 +80,25 @@ public class AsociacionController extends HttpServlet {
     }
 
     private List<Plan> obtenerPlanes() {
+        // Se crea una lista de objetos de tipo Plan llamada "planes"
         List<Plan> planes = new ArrayList<>();
+
+        // Se agrega un nuevo plan a la lista "planes" con ID 1, nombre "Plan Básico", precio 7.99,
+        // y una lista de beneficios específicos
         planes.add(new Plan(1, "Plan Básico", 7.99, Arrays.asList("Acceso a eventos básicos", "Descuentos en tutorías", "Carnet de membresía")));
+
+        // Se agrega otro plan a la lista "planes" con ID 2, nombre "Plan Estándar", precio 12.99,
+        // que incluye todos los beneficios del Plan Básico y otros beneficios adicionales
         planes.add(new Plan(2, "Plan Estándar", 12.99, Arrays.asList("Todos los beneficios del Plan Básico", "Acceso a talleres exclusivos", "Descuentos en material didáctico", "Asesoría académica mensual")));
+
+        // Se agrega el plan final con ID 3, nombre "Plan Premium", precio 19.99,
+        // que incluye todos los beneficios del Plan Estándar y otros adicionales como mentoría personalizada
         planes.add(new Plan(3, "Plan Premium", 19.99, Arrays.asList("Todos los beneficios del Plan Estándar", "Acceso prioritario a eventos", "Mentoría personalizada", "Networking con profesionales", "Descuentos especiales en cursos")));
+
+        // Se devuelve la lista completa de planes
         return planes;
     }
+
 
 
 

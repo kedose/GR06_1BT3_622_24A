@@ -57,6 +57,7 @@ public class ProductoController extends HttpServlet {
         } catch (Exception e) {
             // Si ocurre una excepción, se establece el código de estado HTTP como 500 (Error interno del servidor)
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            // Se escribe un mensaje JSON en la respuesta indicando que hubo un error al procesar la solicitud
             response.getWriter().write("{\"success\": false, \"message\": \"Error procesando la solicitud\"}");
             e.printStackTrace();
         }

@@ -22,7 +22,6 @@ public class Cafeteria {
     }
 
     public Cafeteria() {
-
     }
 
     public String getTipoMenu() {
@@ -65,4 +64,15 @@ public class Cafeteria {
         this.nombreMenu = nombreMenu;
     }
 
+    @Override
+    public String toString() {
+        return "Cafeteria{" +
+                "id_cafeteria=" + id_cafeteria +
+                ", nombreMenu='" + nombreMenu + '\'' +
+                ", descripcionMenu='" + descripcionMenu + '\'' +
+                ", precio=" + precio +
+                ", tipoMenu='" + tipoMenu + '\'' +
+                '}';
+    }
 }
+

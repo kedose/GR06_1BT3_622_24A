@@ -32,12 +32,16 @@ public class CafeteriaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            response.setContentType("text/html;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+
             List<Cafeteria> menuItems = obtenerMenu();
             pasarAtributosYDespachar(request, response, menuItems);
         } catch (Exception e) {
-
+            e.printStackTrace();  // Agrega esto para capturar posibles errores
         }
     }
+
 
     private void pasarAtributosYDespachar(HttpServletRequest request, HttpServletResponse response, List<Cafeteria> menuItems) throws ServletException, IOException {
         request.setAttribute("menuItems", menuItems);

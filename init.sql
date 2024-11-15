@@ -5,7 +5,7 @@ USE javaweb;
 CREATE TABLE IF NOT EXISTS cafeteria (
                                          id_cafeteria bigint unsigned NOT NULL AUTO_INCREMENT,
                                          nombreMenu VARCHAR(100) NOT NULL,
-                                         descripcionMenu TEXT NOT NULL,
+                                         descripcionMenu VARCHAR(100) NOT NULL,
                                          precio DECIMAL(10, 2) NOT NULL,
                                          tipoMenu VARCHAR(50) NOT NULL,
                                          PRIMARY KEY (`id_cafeteria`),

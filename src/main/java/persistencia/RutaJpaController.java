@@ -26,6 +26,7 @@ public class RutaJpaController implements Serializable {
     }
 
     public RutaJpaController() {
+
         emf = Persistence.createEntityManagerFactory("EjemploJavaWebPU");
     }
 

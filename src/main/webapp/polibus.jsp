@@ -26,12 +26,6 @@
                 <input type="text" id="searchInput" class="form-control" placeholder="Buscar ruta por nombre o paradas" onkeyup="filtrarRutas()">
             </div>
 
-            <!-- Información sobre el total de rutas -->
-            <p class="text-lg font-semibold text-gray-700">
-                <span class="text-blue-600">Total de rutas:</span>
-                <span class="font-bold">${not empty rutas ? rutas.size() : 0}</span>
-            </p>
-
             <!-- Tabla de rutas -->
             <div class="table-responsive">
                 <table class="table table-bordered" id="rutasTable">
@@ -79,7 +73,7 @@
 
                 <!-- Botón para cerrar el mapa centrado y alineado verticalmente -->
                 <div class="flex justify-center items-center mt-4">
-                    <button class="btn btn-secondary" onclick="document.getElementById('mapaContainer').style.display = 'none';">
+                    <button class="btn btn-secondary" onclick="cerrarMapa();">
                         Cerrar Mapa
                     </button>
                 </div>
@@ -119,15 +113,23 @@
         const mapaContainer = document.getElementById('mapaContainer');
         const url = button.getAttribute('data-url');
 
-        // Mostrar el contenedor del mapa y cargar la URL en el iframe
+        // Cargar la URL del mapa en el iframe
         mapaIframe.src = url;
 
-        // Mostrar el contenedor del mapa
-        mapaContainer.style.display = 'block';
+        // Mostrar el contenedor del mapa con un desvanecimiento suave
+        $(mapaContainer).fadeIn(1000);
 
         // Hacer scroll hacia el contenedor del mapa
-        document.getElementById('mapaContainer').scrollIntoView({ behavior: 'smooth' });
+        mapaContainer.scrollIntoView({ behavior: 'smooth' });
     }
+
+    function cerrarMapa() {
+        const mapaContainer = document.getElementById('mapaContainer');
+
+        // Ocultar el contenedor del mapa con un desvanecimiento suave
+        $(mapaContainer).fadeOut(500);  // 500ms para el fadeOut
+    }
+
 </script>
 
 <!-- jQuery (debe estar antes de Bootstrap JS) -->

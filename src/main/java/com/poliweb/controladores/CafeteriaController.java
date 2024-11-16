@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import persistencia.CafeteriaJPAController;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,18 +46,42 @@ public class CafeteriaController extends HttpServlet {
                     .filter(item -> !"Almuerzo".equals(item.getTipoMenu()) && !"Desayuno".equals(item.getTipoMenu()))
                     .collect(Collectors.toList());
 
+            // Establecer horarios
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 6);
+            calendar.set(Calendar.MINUTE, 45);
+            Date horaInicioDesayuno = calendar.getTime();
+
+            calendar.set(Calendar.HOUR_OF_DAY, 9);
+            calendar.set(Calendar.MINUTE, 0);
+            Date horaFinDesayuno = calendar.getTime();
+
+            calendar.set(Calendar.HOUR_OF_DAY, 12);
+            calendar.set(Calendar.MINUTE, 30);
+            Date horaInicioAlmuerzo = calendar.getTime();
+
+            calendar.set(Calendar.HOUR_OF_DAY, 15);
+            calendar.set(Calendar.MINUTE, 0);
+            Date horaFinAlmuerzo = calendar.getTime();
+
+            // Obtener hora actual
+            Date horaActual = new Date();
+
             // Enviar los atributos al JSP
             request.setAttribute("desayunos", desayunos);
             request.setAttribute("almuerzos", almuerzos);
             request.setAttribute("bebidasYSnacks", bebidasYSnacks);
+            request.setAttribute("horaInicioDesayuno", horaInicioDesayuno);
+            request.setAttribute("horaFinDesayuno", horaFinDesayuno);
+            request.setAttribute("horaInicioAlmuerzo", horaInicioAlmuerzo);
+            request.setAttribute("horaFinAlmuerzo", horaFinAlmuerzo);
+            request.setAttribute("horaActual", horaActual);
 
             request.getRequestDispatcher(CAFETERIA_JSP).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(); // Captura errores
         }
     }
-
-
 
     private void pasarAtributosYDespachar(HttpServletRequest request, HttpServletResponse response, List<Cafeteria> menuItems) throws ServletException, IOException {
         request.setAttribute("menuItems", menuItems);

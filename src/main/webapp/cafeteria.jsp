@@ -31,9 +31,9 @@
         <p class="text-blue-600">Disfruta de nuestro variado menú con opciones nutritivas y deliciosas</p>
     </div>
 
-    <!-- Desayunos -->
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <h3 class="text-xl font-bold">Desayunos</h3>
+        <p>Horario: <fmt:formatDate type="time" pattern="hh:mm a" value="${horaInicioDesayuno}" /> - <fmt:formatDate type="time" pattern="hh:mm a" value="${horaFinDesayuno}" /></p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <c:forEach var="item" items="${desayunos}">
                 <div class="border rounded-lg p-4">
@@ -48,14 +48,20 @@
                     <p id="${item.nombreMenu}" class="mt-2 text-gray-600 text-sm bg-gray-50 p-2 rounded" style="display:none;">
                             ${item.descripcionMenu}
                     </p>
+                    <c:if test="${horaActual >= horaInicioDesayuno && horaActual <= horaFinDesayuno}">
+                        <span class="text-green-500">Disponible ahora</span>
+                    </c:if>
+                    <c:if test="${horaActual < horaInicioDesayuno || horaActual > horaFinDesayuno}">
+                        <span class="text-red-500">No disponible ahora</span>
+                    </c:if>
                 </div>
             </c:forEach>
         </div>
     </div>
 
-    <!-- Almuerzos -->
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <h3 class="text-xl font-bold">Almuerzos</h3>
+        <p>Horario: <fmt:formatDate type="time" pattern="hh:mm a" value="${horaInicioAlmuerzo}" /> - <fmt:formatDate type="time" pattern="hh:mm a" value="${horaFinAlmuerzo}" /></p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <c:forEach var="item" items="${almuerzos}">
                 <div class="border rounded-lg p-4">
@@ -70,12 +76,17 @@
                     <p id="${item.nombreMenu}" class="mt-2 text-gray-600 text-sm bg-gray-50 p-2 rounded" style="display:none;">
                             ${item.descripcionMenu}
                     </p>
+                    <c:if test="${horaActual >= horaInicioAlmuerzo && horaActual <= horaFinAlmuerzo}">
+                        <span class="text-green-500">Disponible ahora</span>
+                    </c:if>
+                    <c:if test="${horaActual < horaInicioAlmuerzo || horaActual > horaFinAlmuerzo}">
+                        <span class="text-red-500">No disponible ahora</span>
+                    </c:if>
                 </div>
             </c:forEach>
         </div>
     </div>
 
-    <!-- Bebidas y Snacks -->
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <h3 class="text-xl font-bold">Bebidas y Snacks</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -96,7 +107,6 @@
             </c:forEach>
         </div>
     </div>
-
 </div>
 </body>
 </html>

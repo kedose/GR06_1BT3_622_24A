@@ -52,12 +52,12 @@ public class CafeteriaController extends HttpServlet {
             calendar.set(Calendar.MINUTE, 45);
             Date horaInicioDesayuno = calendar.getTime();
 
-            calendar.set(Calendar.HOUR_OF_DAY, 9);
-            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.HOUR_OF_DAY, 11);
+            calendar.set(Calendar.MINUTE, 50);
             Date horaFinDesayuno = calendar.getTime();
 
             calendar.set(Calendar.HOUR_OF_DAY, 12);
-            calendar.set(Calendar.MINUTE, 30);
+            calendar.set(Calendar.MINUTE, 0);
             Date horaInicioAlmuerzo = calendar.getTime();
 
             calendar.set(Calendar.HOUR_OF_DAY, 15);

@@ -60,15 +60,34 @@
     </form>
   </div>
 
-  <!-- Campo de búsqueda y filtrado -->
-  <div class="bg-light p-4 rounded-lg shadow-lg"> <!-- Cambié bg-white a bg-light -->
-    <h3 class="text-xl font-semibold mb-2 text-primary">Buscar Productos</h3> <!-- Cambié el color del texto a primary -->
-    <input type="text" id="searchInput" placeholder="Buscar por nombre de producto..." class="w-full p-2 border border-primary rounded-lg" onkeyup="filterProducts()">
+  <div class="bg-light p-4 rounded-lg shadow-lg">
+    <h3 class="text-xl font-semibold mb-2 text-primary">Opciones de Filtro</h3>
 
-    <h3 class="text-xl font-semibold mb-2 mt-4 text-primary">Filtrar por Precio</h3> <!-- Cambié el color del texto a primary -->
-    <input type="range" id="priceRange" min="0" max="100" value="100" class="w-full" oninput="filterByPrice(this.value)">
-    <p id="priceValue" class="text-sm text-gray-600">Precio máximo: $<span id="priceAmount">100</span></p>
+    <!-- Opciones de filtro -->
+    <div class="mb-4">
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" id="filterByNameCheckbox" class="form-checkbox">
+        <span>Filtrar por Nombre</span>
+      </label>
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" id="filterByPriceCheckbox" class="form-checkbox">
+        <span>Filtrar por Precio</span>
+      </label>
+    </div>
+
+    <!-- Filtro por nombre -->
+    <div id="nameFilterContainer" class="mb-4 hidden">
+      <input type="text" id="searchInput" placeholder="Buscar por nombre de producto..."
+             class="w-full p-2 border border-primary rounded-lg">
+    </div>
+
+    <!-- Filtro por precio -->
+    <div id="priceFilterContainer" class="hidden">
+      <input type="range" id="priceRange" min="0" max="100" value="100" class="w-full">
+      <p id="priceValue" class="text-sm text-gray-600">Precio máximo: $<span id="priceAmount">100</span></p>
+    </div>
   </div>
+
 
 
   <!-- Lista de productos en venta -->
@@ -176,22 +195,43 @@
       }
     });
   }
-
-  function filterProducts() {
-    var searchTerm = $('#searchInput').val().toLowerCase();
-    $('.producto-item').each(function() {
-      var productName = $(this).find('h3').text().toLowerCase();
-      $(this).toggle(productName.indexOf(searchTerm) !== -1);
+  $(document).ready(function () {
+    // Mostrar u ocultar contenedores de filtros según las opciones seleccionadas
+    $('#filterByNameCheckbox').on('change', function () {
+      $('#nameFilterContainer').toggle(this.checked);
+      applyFilters(); // Actualizar al cambiar la opción
     });
-  }
 
-  function filterByPrice(maxPrice) {
-    $('#priceAmount').text(maxPrice);
-    console.log("Filtrando productos con precio máximo:", maxPrice); // Agregado
-    $('.producto-item').each(function() {
+    $('#filterByPriceCheckbox').on('change', function () {
+      $('#priceFilterContainer').toggle(this.checked);
+      applyFilters(); // Actualizar al cambiar la opción
+    });
+
+    // Actualizar los valores de los filtros
+    $('#searchInput').on('input', applyFilters);
+    $('#priceRange').on('input', function () {
+      $('#priceAmount').text($(this).val());
+      applyFilters();
+    });
+  });
+
+  // Función para aplicar los filtros
+  function applyFilters() {
+    var filterByName = $('#filterByNameCheckbox').is(':checked');
+    var filterByPrice = $('#filterByPriceCheckbox').is(':checked');
+    var searchTerm = $('#searchInput').val().toLowerCase();
+    var maxPrice = parseFloat($('#priceRange').val());
+
+    $('.producto-item').each(function () {
+      var productName = $(this).find('h3').text().toLowerCase();
       var productPrice = parseFloat($(this).data('price'));
-      console.log("Producto precio:", productPrice); // Agregado
-      $(this).toggle(productPrice <= maxPrice);
+
+      // Verificar cada criterio según las opciones activadas
+      var matchesSearch = !filterByName || productName.includes(searchTerm);
+      var matchesPrice = !filterByPrice || productPrice <= maxPrice;
+
+      // Mostrar u ocultar el producto si cumple los criterios seleccionados
+      $(this).toggle(matchesSearch && matchesPrice);
     });
   }
 

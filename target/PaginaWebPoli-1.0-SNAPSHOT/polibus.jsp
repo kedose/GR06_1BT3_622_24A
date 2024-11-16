@@ -117,7 +117,7 @@
         mapaIframe.src = url;
 
         // Mostrar el contenedor del mapa con un desvanecimiento suave
-        $(mapaContainer).fadeIn(500);  // 500ms para el fadeIn
+        $(mapaContainer).fadeIn(1000);
 
         // Hacer scroll hacia el contenedor del mapa
         mapaContainer.scrollIntoView({ behavior: 'smooth' });

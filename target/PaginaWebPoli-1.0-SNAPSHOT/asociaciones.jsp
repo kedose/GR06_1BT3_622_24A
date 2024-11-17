@@ -23,6 +23,38 @@
         </div>
 
         <div class="mb-6">
+            <h3 class="text-xl font-bold mb-2">Misión</h3>
+            <p>Somos una organización estudiantil comprometida con el desarrollo integral de los estudiantes de Ingeniería en Sistemas de la EPN, a través de la generación de espacios académicos, de integración y de vinculación con la sociedad, que contribuyan a su formación profesional y personal.</p>
+
+            <h3 class="text-xl font-bold mb-2 mt-4">Servicios</h3>
+            <ul class="list-disc list-inside">
+                <li>Asesorías académicas</li>
+                <li>Talleres y cursos</li>
+                <li>Organización de eventos</li>
+                <li>Representación estudiantil</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-2 mt-4">Contacto</h3>
+            <p>Correo electrónico: asociacion.sistemas@epn.edu.ec</p>
+            <p class="text-gray-600">Redes sociales:</p>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/AEIS.FIS.EPN/" target="_blank">
+                    <img src="${pageContext.request.contextPath}/imagenes/facebook-icon.png" alt="Facebook AEIS" class="w-6 h-6">
+                </a>
+                <a href="https://www.instagram.com/aeis_epn?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                    <img src="${pageContext.request.contextPath}/imagenes/instagram-icon.png" alt="Instagram AEIS" class="w-6 h-6">
+                </a>
+            </div>
+            <p class="text-gray-600">Página oficial de la FIS:</p>
+            <div class="flex space-x-4">
+                <a href="http://fis.epn.edu.ec/" target="_blank">
+                    <img src="${pageContext.request.contextPath}/imagenes/fis-icon.png" alt="FIS" class="w-6 h-6">
+                </a>
+            </div>
+        </div>
+
+
+        <div class="mb-6">
             <form action="asociaciones" method="GET">
                 <div class="flex items-center space-x-4">
                     <div>

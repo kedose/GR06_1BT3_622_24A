@@ -26,7 +26,7 @@ public class ProductoTest {
 
     @Test
     public void validarProductoConCamposVacios() {
-        System.out.println("Test 1");
+        System.out.println("Test 1: Unit Test - ProductoTest");
         try {
             Producto producto = new Producto("", "", "", 0, "", "");
             assertFalse(Producto.validarProducto(producto));
@@ -38,7 +38,7 @@ public class ProductoTest {
 
     @Test
     public void validarFormatoCodigoEstudiante() {
-        System.out.println("Test 2");
+        System.out.println("Test 2: Unit Test - ProductoTest");
         // Producto inválido con código no numérico
         Producto codigoEstudianteInvalido = new Producto("ABC123", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
         ProductoException exception = assertThrows(ProductoException.class, () -> Producto.validarProducto(codigoEstudianteInvalido));
@@ -56,7 +56,7 @@ public class ProductoTest {
 
     @Test
     public void buscarProductosPorNombreCaseInsensitive() {
-        System.out.println("Test 3");
+        System.out.println("Test 3: Unit Test - ProductoTest");
         Producto producto1 = new Producto("12345", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -74,7 +74,7 @@ public class ProductoTest {
 
     @Test
     public void buscarProductosPorRangoDePrecios() {
-        System.out.println("Test 4");
+        System.out.println("Test 4: Unit Test - ProductoTest");
         Producto producto1 = new Producto("12345", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -94,7 +94,7 @@ public class ProductoTest {
 
     @Test
     public void crearProductoConExito() {
-        System.out.println("Test 5");
+        System.out.println("Test 5: Unit Test - ProductoTest");
         Producto producto = new Producto("202020475", "Issac",
                 "Libro de Ingles", 15, "0983307662",
                 "1 semana");
@@ -103,7 +103,7 @@ public class ProductoTest {
 
     @Test
     public void buscarProductosSimilares() {
-        System.out.println("Test 6");
+        System.out.println("Test 6: Unit Test - ProductoTest");
         Producto producto1 = new Producto("202020475", "Kevin Donozo",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -132,7 +132,7 @@ public class ProductoTest {
 
     @Test
     public void crear2ProductosIdenticos() {
-        System.out.println("Test 7");
+        System.out.println("Test 7: Unit Test - ProductoTest");
         Producto producto1 = new Producto("202020475", "Juan Pérez",
                 "Libro de Java", 20.0, "1234567890",
                 "1 semana");
@@ -154,7 +154,7 @@ public class ProductoTest {
 
     @Test
     public void crearProductoSinNumeroContacto() {
-        System.out.println("Test 8");
+        System.out.println("Test 8: Unit Test - ProductoTest");
         try {
             Producto producto1 = new Producto("2020204759", "Juan Pérez",
                     "Libro de Java", 20.0, "",

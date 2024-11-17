@@ -25,6 +25,7 @@ public class RutaTest {
 
     @Test
     public void testSettersAndGetters() {
+        System.out.println("Test 1: Unit Test - RutaTest");
         // Creamos una nueva instancia con el constructor por defecto
         Ruta ruta = new Ruta();
 
@@ -47,6 +48,7 @@ public class RutaTest {
 
     @Test
     public void testToString() {
+        System.out.println("Test 2: Unit Test - RutaTest");
         // Creamos una nueva instancia con todos los parámetros
         Ruta ruta = new Ruta(1L, "Ruta 1", "Parada 1", "10:00 AM", "Teatro", "https://linkalmapa1.com");
 

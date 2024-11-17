@@ -40,6 +40,7 @@ public class RutaControllerTest {
 
     @Test
     public void testDoGetExitoso() throws Exception {
+        System.out.println("Test 1: MOCKITO - RutaControllerTest");
         // Crear datos simulados con todos los parámetros del constructor
         List<Ruta> rutasSimuladas = new ArrayList<>();
         rutasSimuladas.add(new Ruta(1L, "Ruta 1", "Parada 1", "10:00 AM", "Teatro", "https://linkalmapa1.com"));
@@ -62,6 +63,7 @@ public class RutaControllerTest {
 
     @Test
     public void testDoGetConError() throws Exception {
+        System.out.println("Test 2: MOCKITO - RutaControllerTest");
         // Simular una excepción en el acceso a la base de datos
         when(mockRutaJpaController.obtenerTodasLasRutas()).thenThrow(new RuntimeException("Error en la BD"));
         // Llamar al método doGet

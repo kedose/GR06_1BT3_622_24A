@@ -42,17 +42,6 @@ public class CafeteriaJPAController implements Serializable {
         return instance;
     }
 
-    public void agregarCafeteria(Cafeteria cafeteria) {
-        try {
-            em.getTransaction().begin();
-            em.persist(cafeteria);
-            em.getTransaction().commit();
-            logger.info("Cafetería agregada: " + cafeteria.getNombreMenu());
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            logger.log(Level.SEVERE, "Error al agregar la cafetería", e);
-        }
-    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();

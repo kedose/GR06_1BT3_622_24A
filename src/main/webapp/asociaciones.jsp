@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asociación de Estudiantes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Incluimos jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body class="bg-gray-50">
 
+<body class="bg-gray-50">  
 <div class="space-y-8">
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <div class="flex items-center mb-6">
@@ -20,6 +20,19 @@
                 <h2 class="text-2xl font-bold">AEIS - Asociación de Estudiantes de Ingeniería en Sistemas</h2>
                 <p class="text-gray-600">Únete a nuestra comunidad y disfruta de beneficios exclusivos</p>
             </div>
+        </div>
+
+        <div class="mb-6">
+            <form action="asociaciones" method="GET">
+                <div class="flex items-center space-x-4">
+                    <div>
+                        <a href="asociaciones?orden=asc" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Menor a Mayor</a>
+                    </div>
+                    <div>
+                        <a href="asociaciones?orden=desc" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Mayor a Menor</a>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6 mb-6">
@@ -35,7 +48,6 @@
                             </li>
                         </c:forEach>
                     </ul>
-                    <!-- Botón centrado y alargado -->
                     <div class="mt-4 w-full text-center">
                         <form class="plan-form" action="asociaciones" method="POST">
                             <input type="hidden" name="planId" value="${plan.id}" />
@@ -50,14 +62,12 @@
     </div>
 </div>
 
-<!-- Contenedor para la información de pago (vacío al principio) -->
 <div id="payment-info-container"></div>
 
 <script>
-    // Lógica para manejar la respuesta del servidor (AJAX)
     $(document).ready(function() {
         $("form").submit(function(event) {
-            event.preventDefault(); // Prevenir el envío del formulario normal
+            event.preventDefault();
 
             var planId = $(this).find("input[name='planId']").val();
 
@@ -66,7 +76,6 @@
                 type: 'POST',
                 data: { planId: planId },
                 success: function(response) {
-                    // Crear dinámicamente el contenido de la ventana
                     var plan = response.producto;
                     var paymentInfoHtml = `
                         <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
@@ -76,7 +85,7 @@
                                 </svg>
                                 <h3 class="text-xl font-bold">Información de Pago</h3>
                             </div>
-                            <p class="mb-2">Para completar tu suscripción al <strong>\${plan.nombre}</strong>, realiza una transferencia o depósito por <strong>\${plan.precio}</strong> a la siguiente cuenta:</p>
+                            <p class="mb-2">Para completar tu suscripción al <strong>${plan.nombre}</strong>, realiza una transferencia o depósito por <strong>${plan.precio}</strong> a la siguiente cuenta:</p>
                             <div class="bg-white p-4 rounded-lg border border-blue-200">
                                 <p class="font-semibold">Banco Pichincha</p>
                                 <p>Cuenta Corriente: 2100012345</p>
@@ -89,14 +98,12 @@
                         </div>
                     `;
 
-                    // Insertar el contenido en el contenedor
                     $("#payment-info-container").html(paymentInfoHtml);
 
-                    // Actualizar la clase del plan seleccionado (opcional)
                     $("div[id^='plan-']").removeClass('border-blue-500 ring-2 ring-blue-500').addClass('border-gray-200');
                     $("#plan-" + planId).removeClass('border-gray-200').addClass('border-blue-500 ring-2 ring-blue-500');
                     document.getElementById("payment-info-container").scrollIntoView({ behavior: 'smooth' });
-                    },
+                },
                 error: function() {
                     alert('Hubo un error al seleccionar el plan.');
                 }

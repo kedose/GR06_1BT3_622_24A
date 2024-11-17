@@ -115,11 +115,10 @@
       $('#productList').append(`
           <div class="bg-white p-4 rounded-lg shadow-lg producto-item" data-price="1">
             <h3 class="text-xl font-semibold mb-2">Producto de Prueba</h3>
-            <p class="text-2xl font-bold text-green-600 mb-2">$1</p>
+            <p class="text-2xl font-bold text-green-600 mb-2">$15</p>
             <div class="space-y-1 text-sm text-gray-600">
               <p>Estudiante de Prueba</p>
               <p><a href="https://wa.me/5930999201326" target="_blank" class="text-blue-500 hover:underline">0999201326</a></p>
-              <p>1</p>
             </div>
           </div>
         `);
@@ -176,7 +175,6 @@
             <div class="space-y-1 text-sm text-gray-600">
                 <p>\${newProduct.nombreEstudiante}</p>
                 <p><a href="https://wa.me/593\${newProduct.numeroContacto}" target="_blank" class="text-blue-500 hover:underline">\${newProduct.numeroContacto}</a></p>
-                <p>\${newProduct.tiempoVisualizacion}</p>
             </div>
         </div>
     `;

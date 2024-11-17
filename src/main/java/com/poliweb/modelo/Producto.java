@@ -32,8 +32,8 @@ public class Producto {
     }
 
     public static void agregarProducto(Producto producto) {
-        if (producto != null) {
-            listaProductos.add(producto); // Añade el producto a la lista
+        if (producto != null && validarProducto(producto)) {
+            listaProductos.add(producto); // Añade el producto a la lista si es válido
         }
     }
 
@@ -41,17 +41,14 @@ public class Producto {
         return new ArrayList<>(listaProductos); // Retorna una copia de la lista para evitar modificaciones externas
     }
 
-    public static List<Producto> buscarProductosPorNombre(String nombre) throws NoProductosEncontradosException {
+    public static List<Producto> buscarProductosPorNombre(String nombre) {
         List<Producto> resultados = new ArrayList<>();
         for (Producto producto : listaProductos) {
             if (producto.getNombreProducto().toLowerCase().contains(nombre.toLowerCase())) {
                 resultados.add(producto);
             }
         }
-        if (resultados.isEmpty()) {
-            throw new NoProductosEncontradosException("No se encontraron productos con el nombre: " + nombre);
-        }
-        return resultados;
+        return resultados;  // Devuelve lista vacía si no se encuentran productos
     }
 
     public static List<Producto> buscarProductosPorPrecio(double precioMinimo, double precioMaximo) {
@@ -61,10 +58,7 @@ public class Producto {
                 resultados.add(producto);
             }
         }
-        if (resultados.isEmpty()) {
-            throw new NoProductosEncontradosException("No se encontraron productos con el precio indicado");
-        }
-        return resultados;
+        return resultados;  // Devuelve lista vacía si no se encuentran productos
     }
 
     public static boolean validarProducto(Producto producto) {
@@ -75,7 +69,7 @@ public class Producto {
             throw new ProductoException("El código de estudiante es obligatorio");
         }
         // Validación del formato del código de estudiante (ejemplo: solo números)
-        if (!producto.getCodigoEstudiante().matches("\\d{9}")) {
+        if (producto.getCodigoEstudiante() == null || producto.getCodigoEstudiante().length() != 9 || !producto.getCodigoEstudiante().matches("[0-9]+")) {
             throw new ProductoException("El código de estudiante debe tener exactamente 9 dígitos numéricos");
         }
         if (producto.getNombreProducto() == null || producto.getNombreProducto().isEmpty()) {

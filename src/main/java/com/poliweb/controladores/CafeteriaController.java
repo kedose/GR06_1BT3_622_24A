@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 @WebServlet("/cafeteria")
@@ -19,6 +20,7 @@ public class CafeteriaController extends HttpServlet {
 
     private final CafeteriaJPAController cafeteriaController;
     private static final String CAFETERIA_JSP = "cafeteria.jsp";
+
     public CafeteriaController() {
         this(new CafeteriaJPAController());
     }
@@ -47,7 +49,9 @@ public class CafeteriaController extends HttpServlet {
                     .collect(Collectors.toList());
 
             // Establecer horarios
-            Calendar calendar = Calendar.getInstance();
+            TimeZone zonaHorariaQuito = TimeZone.getTimeZone("America/Guayaquil"); // Quito usa la zona horaria "America/Guayaquil"
+            Calendar calendar = Calendar.getInstance(zonaHorariaQuito);
+
             calendar.set(Calendar.HOUR_OF_DAY, 6);
             calendar.set(Calendar.MINUTE, 45);
             Date horaInicioDesayuno = calendar.getTime();

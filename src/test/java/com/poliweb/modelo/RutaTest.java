@@ -1,6 +1,10 @@
 package com.poliweb.modelo;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RutaTest {
@@ -50,4 +54,25 @@ public class RutaTest {
         String expected = "Nombre de la Ruta: Ruta 1, Paradas: Parada 1, Horario: 10:00 AM, Ubicación: Teatro, Mapa URL: https://linkalmapa1.com";
         assertEquals(expected, ruta.toString());
     }
+
+    @Test
+    public void testBuscarRutaPorNombre() {
+        RutaService rutaService = new RutaService();
+
+        // Creamos una lista de rutas
+        List<Ruta> rutas = new ArrayList<>();
+        rutas.add(new Ruta(1L, "Ruta 1", "Parada 1", "10:00 AM", "Teatro", "https://linkalmapa1.com"));
+        rutas.add(new Ruta(2L, "Ruta 2", "Parada 2", "11:00 AM", "Sistemas", "https://linkalmapa2.com"));
+        rutas.add(new Ruta(3L, "Ruta 3", "Parada 3", "12:00 PM", "Biblioteca", "https://linkalmapa3.com"));
+
+        // Buscamos una ruta por su nombre
+        Ruta rutaEncontrada = rutaService.buscarRutaPorNombre(rutas, "Ruta 2");
+
+        // Verificamos que la ruta encontrada sea la correcta
+        assertNotNull(rutaEncontrada);
+        assertEquals(2L, rutaEncontrada.getIdBus());
+        assertEquals("Ruta 2", rutaEncontrada.getNombreRuta());
+    }
+
+
 }

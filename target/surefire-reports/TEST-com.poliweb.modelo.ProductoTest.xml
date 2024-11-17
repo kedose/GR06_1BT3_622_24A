@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.poliweb.modelo.ProductoTest" time="0.024" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.poliweb.modelo.ProductoTest" time="0.055" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Users\Issac\AppData\Local\Programs\Microsoft\jdk-21.0.4.7-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\Issac\AppData\Local\Temp\surefire12024165692691329333\surefirebooter-20241117123900542_3.jar C:\Users\Issac\AppData\Local\Temp\surefire12024165692691329333 2024-11-17T12-39-00_378-jvmRun1 surefire-20241117123900542_1tmp surefire_0-20241117123900542_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Issac\AppData\Local\Temp\surefire10677542926573643268\surefirebooter-20241117150937503_3.jar C:\Users\Issac\AppData\Local\Temp\surefire10677542926573643268 2024-11-17T15-09-37_251-jvmRun1 surefire-20241117150937503_1tmp surefire_0-20241117150937503_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Issac\Documents\GitHub\GR06_1BT3_622_24A\target\test-classes;C:\Users\Issac\Documents\GitHub\GR06_1BT3_622_24A\target\classes;C:\Users\Issac\.m2\repository\jakarta\platform\jakarta.jakartaee-api\10.0.0\jakarta.jakartaee-api-10.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\platform\jakarta.jakartaee-web-api\10.0.0\jakarta.jakartaee-web-api-10.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\servlet\jsp\jakarta.servlet.jsp-api\3.1.0\jakarta.servlet.jsp-api-3.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\faces\jakarta.faces-api\4.0.1\jakarta.faces-api-4.0.1.jar;C:\Users\Issac\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\3.1.0\jakarta.ws.rs-api-3.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\websocket\jakarta.websocket-api\2.1.0\jakarta.websocket-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\websocket\jakarta.websocket-client-api\2.1.0\jakarta.websocket-client-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\json\jakarta.json-api\2.1.0\jakarta.json-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\json\bind\jakarta.json.bind-api\3.0.0\jakarta.json.bind-api-3.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\Issac\.m2\repository\jakarta\ejb\jakarta.ejb-api\4.0.1\jakarta.ejb-api-4.0.1.jar;C:\Users\Issac\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\Issac\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\Issac\.m2\repository\jakarta\interceptor\jakarta.interceptor-api\2.1.0\jakarta.interceptor-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\enterprise\jakarta.enterprise.cdi-api\4.0.1\jakarta.enterprise.cdi-api-4.0.1.jar;C:\Users\Issac\.m2\repository\jakarta\enterprise\jakarta.enterprise.lang-model\4.0.1\jakarta.enterprise.lang-model-4.0.1.jar;C:\Users\Issac\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\Issac\.m2\repository\jakarta\authentication\jakarta.authentication-api\3.0.0\jakarta.authentication-api-3.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\security\enterprise\jakarta.security.enterprise-api\3.0.0\jakarta.security.enterprise-api-3.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\jms\jakarta.jms-api\3.1.0\jakarta.jms-api-3.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.0\jakarta.activation-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\mail\jakarta.mail-api\2.1.0\jakarta.mail-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\resource\jakarta.resource-api\2.1.0\jakarta.resource-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\authorization\jakarta.authorization-api\2.1.0\jakarta.authorization-api-2.1.0.jar;C:\Users\Issac\.m2\repository\jakarta\batch\jakarta.batch-api\2.1.1\jakarta.batch-api-2.1.1.jar;C:\Users\Issac\.m2\repository\com\mysql\mysql-connector-j\8.0.32\mysql-connector-j-8.0.32.jar;C:\Users\Issac\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar;C:\Users\Issac\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\3.0.0\org.eclipse.persistence.jpa-3.0.0.jar;C:\Users\Issac\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\3.0.0\org.eclipse.persistence.asm-3.0.0.jar;C:\Users\Issac\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\3.0.0\org.eclipse.persistence.core-3.0.0.jar;C:\Users\Issac\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\3.0.0\org.eclipse.persistence.jpa.jpql-3.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.0.0\jakarta.persistence-api-3.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\servlet\jsp\jstl\jakarta.servlet.jsp.jstl-api\3.0.0\jakarta.servlet.jsp.jstl-api-3.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\servlet\jakarta.servlet-api\6.0.0\jakarta.servlet-api-6.0.0.jar;C:\Users\Issac\.m2\repository\jakarta\el\jakarta.el-api\5.0.0\jakarta.el-api-5.0.0.jar;C:\Users\Issac\.m2\repository\org\glassfish\web\jakarta.servlet.jsp.jstl\3.0.0\jakarta.servlet.jsp.jstl-3.0.0.jar;C:\Users\Issac\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.2\junit-jupiter-api-5.11.2.jar;C:\Users\Issac\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Issac\.m2\repository\org\junit\platform\junit-platform-commons\1.11.2\junit-platform-commons-1.11.2.jar;C:\Users\Issac\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Issac\.m2\repository\org\mockito\mockito-core\5.11.0\mockito-core-5.11.0.jar;C:\Users\Issac\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\Issac\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.12\byte-buddy-agent-1.14.12.jar;C:\Users\Issac\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Issac\.m2\repository\org\mockito\mockito-junit-jupiter\5.11.0\mockito-junit-jupiter-5.11.0.jar;C:\Users\Issac\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar;C:\Users\Issac\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Issac\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.11.2\junit-jupiter-params-5.11.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Issac\AppData\Local\Temp\surefire12024165692691329333\surefirebooter-20241117123900542_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Issac\AppData\Local\Temp\surefire10677542926573643268\surefirebooter-20241117150937503_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.4+7-LTS"/>
@@ -62,25 +62,25 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="buscarProductosPorNombreCaseInsensitive" classname="com.poliweb.modelo.ProductoTest" time="0.003">
+  <testcase name="buscarProductosPorNombreCaseInsensitive" classname="com.poliweb.modelo.ProductoTest" time="0.005">
     <system-out><![CDATA[setUp()
 Test 3
 tearDown()
 ]]></system-out>
   </testcase>
-  <testcase name="crear2ProductosIdenticos" classname="com.poliweb.modelo.ProductoTest" time="0.003">
+  <testcase name="crear2ProductosIdenticos" classname="com.poliweb.modelo.ProductoTest" time="0.004">
     <system-out><![CDATA[setUp()
 Test 7
 tearDown()
 ]]></system-out>
   </testcase>
-  <testcase name="buscarProductosPorRangoDePrecios" classname="com.poliweb.modelo.ProductoTest" time="0.002">
+  <testcase name="buscarProductosPorRangoDePrecios" classname="com.poliweb.modelo.ProductoTest" time="0.003">
     <system-out><![CDATA[setUp()
 Test 4
 tearDown()
 ]]></system-out>
   </testcase>
-  <testcase name="validarFormatoCodigoEstudiante" classname="com.poliweb.modelo.ProductoTest" time="0.004">
+  <testcase name="validarFormatoCodigoEstudiante" classname="com.poliweb.modelo.ProductoTest" time="0.006">
     <system-out><![CDATA[setUp()
 Test 2
 Error al validar el código: El código de estudiante debe tener exactamente 9 dígitos numéricos
@@ -88,27 +88,27 @@ Error al validar el código: El código de estudiante debe tener exactamente 9 d
 tearDown()
 ]]></system-out>
   </testcase>
-  <testcase name="crearProductoConExito" classname="com.poliweb.modelo.ProductoTest" time="0.002">
+  <testcase name="crearProductoConExito" classname="com.poliweb.modelo.ProductoTest" time="0.005">
     <system-out><![CDATA[setUp()
 Test 5
 tearDown()
 ]]></system-out>
   </testcase>
-  <testcase name="validarProductoConCamposVacios" classname="com.poliweb.modelo.ProductoTest" time="0.002">
+  <testcase name="validarProductoConCamposVacios" classname="com.poliweb.modelo.ProductoTest" time="0.007">
     <system-out><![CDATA[setUp()
 Test 1
 Error al validar el producto: El código de estudiante es obligatorio
 tearDown()
 ]]></system-out>
   </testcase>
-  <testcase name="crearProductoSinNumeroContacto" classname="com.poliweb.modelo.ProductoTest" time="0.002">
+  <testcase name="crearProductoSinNumeroContacto" classname="com.poliweb.modelo.ProductoTest" time="0.005">
     <system-out><![CDATA[setUp()
 Test 8
 Error al validar el producto: El código de estudiante debe tener exactamente 9 dígitos numéricos
 tearDown()
 ]]></system-out>
   </testcase>
-  <testcase name="buscarProductosSimilares" classname="com.poliweb.modelo.ProductoTest" time="0.001">
+  <testcase name="buscarProductosSimilares" classname="com.poliweb.modelo.ProductoTest" time="0.003">
     <system-out><![CDATA[setUp()
 Test 6
 libro de Ingles Avanzado 1

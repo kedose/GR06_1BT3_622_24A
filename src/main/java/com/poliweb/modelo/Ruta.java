@@ -3,6 +3,7 @@ package com.poliweb.modelo;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "buses") // Indica que esta entidad corresponde a la tabla 'buses'
@@ -78,6 +79,7 @@ public class Ruta implements Serializable {
     public void setMapaUrl(String mapa_url) {
         this.mapa_url = mapa_url;
     }
+
 
     // Método toString
     @Override

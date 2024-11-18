@@ -1,7 +1,7 @@
 # target folder
-/target/
+target/
 #ignored files
-/errores.txt
+errores.txt
 # Default ignored files
 /shelf/
 /.idea/workspace.xml

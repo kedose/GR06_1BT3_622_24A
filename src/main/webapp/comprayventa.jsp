@@ -138,12 +138,19 @@
   }
 
   function publicarProducto() {
+    // Obtener los valores de los campos del formulario
     var codigoEstudiante = $('#codigoEstudiante').val();
-    var nombreEstudiante = $('#nombreEstudiante').val(); // Mantén esto como una variable local
+    var nombreEstudiante = $('#nombreEstudiante').val();
     var nombreProducto = $('#nombreProducto').val();
     var precioProducto = $('#precioProducto').val();
     var numeroContacto = $('#numeroContacto').val();
     var tiempoVisualizacion = $('#tiempoVisualizacion').val();
+
+    // Verificar si alguno de los campos requeridos está vacío
+    if (!codigoEstudiante || !nombreEstudiante || !nombreProducto || !precioProducto || !numeroContacto || !tiempoVisualizacion) {
+      alert("Por favor, completa todos los campos.");
+      return; // Detener la ejecución si algún campo está vacío
+    }
 
     var formData = {
       codigoEstudiante: codigoEstudiante,

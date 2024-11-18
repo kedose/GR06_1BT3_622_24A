@@ -42,7 +42,7 @@ public class RutaController extends HttpServlet {
     }
 
 
-    private void manejarError(HttpServletResponse response, Exception e) throws IOException {
+    void manejarError(HttpServletResponse response, Exception e) throws IOException {
         String errorMessage = "Error en la consulta: " + e.getMessage();
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la consulta");
 
@@ -67,7 +67,7 @@ public class RutaController extends HttpServlet {
         return controladoraPersistencia.obtenerTodasLasRutas();
     }
 
-    private void pasarAtributosYDespachar(HttpServletRequest request, HttpServletResponse response, List<Ruta> rutas) throws ServletException, IOException {
+    void pasarAtributosYDespachar(HttpServletRequest request, HttpServletResponse response, List<Ruta> rutas) throws ServletException, IOException {
         request.setAttribute("rutas", rutas);
         request.getRequestDispatcher(RUTA_JSP).forward(request, response);
     }

@@ -1,5 +1,5 @@
 com\poliweb\controladores\ProductoControllerTest.class
-com\poliweb\controladores\RutaControllerTest.class
 com\poliweb\modelo\ProductoParametersTest.class
-com\poliweb\modelo\ProductoTest.class
 com\poliweb\modelo\RutaTest.class
+com\poliweb\controladores\RutaControllerTest.class
+com\poliweb\modelo\ProductoTest.class

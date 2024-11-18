@@ -3,6 +3,7 @@ package com.poliweb.controladores;
 import static org.mockito.Mockito.*;
 
 import com.poliweb.modelo.Ruta;
+import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
 import persistencia.RutaJpaController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,4 +73,6 @@ public class RutaControllerTest {
         // Verificar que se envió el error correctamente
         verify(response).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la consulta");
     }
+
+
 }

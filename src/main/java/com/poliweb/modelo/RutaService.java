@@ -1,6 +1,8 @@
 package com.poliweb.modelo;
 
 import com.poliweb.modelo.Ruta;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class RutaService {
@@ -12,5 +14,15 @@ public class RutaService {
             }
         }
         return null;
+    }
+
+    public List<Ruta> buscarRutaPorParada(List<Ruta> rutas, String nombreParada) {
+        List<Ruta> rutasEncontradas = new ArrayList<>();
+        for (Ruta ruta : rutas) {
+            if (ruta.getParadas().contains(nombreParada)) {
+                rutasEncontradas.add(ruta);
+            }
+        }
+        return rutasEncontradas;
     }
 }

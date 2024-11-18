@@ -75,6 +75,69 @@ public class RutaTest {
         assertEquals(2L, rutaEncontrada.getIdBus());
         assertEquals("Ruta 2", rutaEncontrada.getNombreRuta());
     }
+    @Test
+    public void testBuscarRutaPorNombreNoExistente() {
+        System.out.println("Test 5: Unit Test - RutaTest");
+        RutaService rutaService = new RutaService();
 
+        // Creamos una lista de rutas
+        List<Ruta> rutas = new ArrayList<>();
+        rutas.add(new Ruta(1L, "Ruta 1", "Parada 1", "10:00 AM", "Teatro", "https://linkalmapa1.com"));
+        rutas.add(new Ruta(2L, "Ruta 2", "Parada 2", "11:00 AM", "Sistemas", "https://linkalmapa2.com"));
 
+        // Buscamos una ruta por un nombre que no existe
+        Ruta rutaEncontrada = rutaService.buscarRutaPorNombre(rutas, "Ruta 3");
+
+        // Verificamos que la ruta encontrada sea nula
+        assertNull(rutaEncontrada);
+    }
+
+    @Test
+    public void testBuscarRutaPorParadaExistente() {
+        System.out.println("Test 6: Unit Test - RutaTest");
+        RutaService rutaService = new RutaService();
+
+        // Creamos una lista de rutas con varias paradas
+        List<Ruta> rutas = new ArrayList<>();
+        rutas.add(new Ruta(1L, "Ruta 1", "Parada A, Parada B, Parada C", "10:00 AM", "Teatro", "https://linkalmapa1.com"));
+        rutas.add(new Ruta(2L, "Ruta 2", "Parada B, Parada D", "11:00 AM", "Sistemas", "https://linkalmapa2.com"));
+
+        // Buscamos rutas por una parada que existe en ambas rutas
+        List<Ruta> rutasEncontradas = rutaService.buscarRutaPorParada(rutas, "Parada B");
+
+        // Verificamos que se encuentren ambas rutas
+        assertEquals(2, rutasEncontradas.size());
+    }
+
+    @Test
+    public void testBuscarRutaPorParadaNoExistente() {
+        System.out.println("Test 7: Unit Test - RutaTest");
+        RutaService rutaService = new RutaService();
+
+        // Creamos una lista de rutas con varias paradas
+        List<Ruta> rutas = new ArrayList<>();
+        rutas.add(new Ruta(1L, "Ruta 1", "Parada A, Parada B, Parada C", "10:00 AM", "Teatro", "https://linkalmapa1.com"));
+        rutas.add(new Ruta(2L, "Ruta 2", "Parada B, Parada D", "11:00 AM", "Sistemas", "https://linkalmapa2.com"));
+
+        // Buscamos rutas por una parada que no existe
+        List<Ruta> rutasEncontradas = rutaService.buscarRutaPorParada(rutas, "Parada Z");
+
+        // Verificamos que la lista de rutas encontradas esté vacía
+        assertTrue(rutasEncontradas.isEmpty());
+    }
+
+    @Test
+    public void testBuscarRutaPorParadaConListaVacia() {
+        System.out.println("Test 8: Unit Test - RutaTest");
+        RutaService rutaService = new RutaService();
+
+        // Creamos una lista de rutas vacía
+        List<Ruta> rutas = new ArrayList<>();
+
+        // Buscamos rutas por una parada en una lista vacía
+        List<Ruta> rutasEncontradas = rutaService.buscarRutaPorParada(rutas, "Parada A");
+
+        // Verificamos que la lista de rutas encontradas esté vacía
+        assertTrue(rutasEncontradas.isEmpty());
+    }
 }

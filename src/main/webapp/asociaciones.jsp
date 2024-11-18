@@ -74,13 +74,12 @@
             <h4 class="text-lg font-semibold text-gray-800 mt-4 mb-2">Página oficial de la FIS</h4>
             <a href="http://fis.epn.edu.ec/" target="_blank" class="inline-flex items-center text-gray-700 hover:text-blue-600">
                 <img src="${pageContext.request.contextPath}/imagenes/fis-icon.png" alt="FIS" class="w-8 h-8 mr-2">
-                http://fis.epn.edu.ec
             </a>
         </div>
     </div>
 </div>
 
-
+<br>
 <!-- Botones de ordenamiento -->
 <div class="flex items-center space-x-4 mb-6">
     <button id="sort-asc" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">

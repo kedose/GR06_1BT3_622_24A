@@ -13,7 +13,7 @@
 <body class="bg-gray-100 p-6">
 <div class="container mx-auto space-y-6">
   <header class="flex justify-between items-center">
-    <h2 class="text-2xl font-bold">Polimarket - Compra y Venta $$$</h2>
+    <h2 class="text-2xl font-bold">Polimercado - Compra y Venta $$$</h2>
     <button id="toggleFormButton" onclick="toggleForm()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" aria-expanded="false" aria-controls="productForm">
       Vender
     </button>

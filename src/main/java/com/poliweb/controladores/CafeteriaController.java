@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import persistencia.CafeteriaJPAController;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public class CafeteriaController extends HttpServlet {
                     .collect(Collectors.toList());
 
             // Establecer horarios
-            TimeZone zonaHorariaQuito = TimeZone.getTimeZone("America/Guayaquil"); // Quito usa la zona horaria "America/Guayaquil"
+            TimeZone zonaHorariaQuito = TimeZone.getTimeZone("America/Guayaquil");
             Calendar calendar = Calendar.getInstance(zonaHorariaQuito);
 
             calendar.set(Calendar.HOUR_OF_DAY, 6);
@@ -68,9 +69,13 @@ public class CafeteriaController extends HttpServlet {
             calendar.set(Calendar.MINUTE, 0);
             Date horaFinAlmuerzo = calendar.getTime();
 
-            // Obtener hora actual
-            Date horaActual = new Date();
-
+            // Obtener hora actual en la zona horaria correcta
+            Calendar ahora = Calendar.getInstance(zonaHorariaQuito);
+            Date horaActual = ahora.getTime();
+            // Depuración
+            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+            formatoHora.setTimeZone(zonaHorariaQuito);
+            System.out.println("Hora actual: " + formatoHora.format(horaActual));
             // Enviar los atributos al JSP
             request.setAttribute("desayunos", desayunos);
             request.setAttribute("almuerzos", almuerzos);

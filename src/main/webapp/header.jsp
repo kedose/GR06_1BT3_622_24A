@@ -74,7 +74,6 @@
                 <!-- Redirige a los controladores -->
                 <li><a href="${pageContext.request.contextPath}/Inicio" class="nav-link">Inicio</a></li>
                 <li><a href="${pageContext.request.contextPath}/Servicios" class="nav-link">Servicios</a></li>
-                <li><a href="${pageContext.request.contextPath}/Contacto" class="nav-link">Contacto</a></li>
             </ul>
         </nav>
     </div>

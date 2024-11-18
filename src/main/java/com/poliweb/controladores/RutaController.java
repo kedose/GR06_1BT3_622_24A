@@ -51,17 +51,19 @@ public class RutaController extends HttpServlet {
     }
 
     private void guardarErrorEnArchivo(String errorMessage) {
-        String rutaArchivo = "errores.txt"; // Cambia esto a la ruta deseada
+        String rutaArchivo = obtenerRutaArchivoErrores();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
             writer.write(errorMessage);
-            writer.newLine(); // Agregar una nueva línea después del mensaje
+            writer.newLine();
         } catch (IOException ioException) {
-            ioException.printStackTrace(); // O maneja el error según sea necesario
+            ioException.printStackTrace();
         }
     }
 
-
+    private String obtenerRutaArchivoErrores() {
+        return "errores.txt";
+    }
 
     private List<Ruta> obtenerRutas() throws Exception {
         return controladoraPersistencia.obtenerTodasLasRutas();

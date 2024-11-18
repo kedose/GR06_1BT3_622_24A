@@ -29,58 +29,55 @@ public class ProductoTest {
         System.out.println("Test 1: Unit Test - ProductoTest");
         try {
             Producto producto = new Producto("", "", "", 0, "", "");
-            assertFalse(Producto.validarProducto(producto));
-        }
-        catch (Exception e) {
+            Producto.validarProducto(producto); // Llamada que debe lanzar la excepción
+            fail("Se esperaba una excepción ProductoException debido a campos vacíos");
+        } catch (ProductoException e) {
             System.out.println("Error al validar el producto: " + e.getMessage());
         }
     }
 
+
     @Test
     public void validarFormatoCodigoEstudiante() {
         System.out.println("Test 2: Unit Test - ProductoTest");
-        // Producto inválido con código no numérico
+
+        // Producto con código no numérico
         Producto codigoEstudianteInvalido = new Producto("ABC123", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
         ProductoException exception = assertThrows(ProductoException.class, () -> Producto.validarProducto(codigoEstudianteInvalido));
         System.out.println("Error al validar el código: " + exception.getMessage());
 
-        // Producto inválido con código que no tiene 9 dígitos
+        // Producto con código que no tiene 9 dígitos
         Producto codigoEstudianteInvalido2 = new Producto("1234", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
         exception = assertThrows(ProductoException.class, () -> Producto.validarProducto(codigoEstudianteInvalido2));
         System.out.println("Error al validar el código: " + exception.getMessage());
 
         // Producto válido
         Producto codigoEstudianteValido = new Producto("123456789", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
-        assertTrue(Producto.validarProducto(codigoEstudianteValido));
+        assertDoesNotThrow(() -> Producto.validarProducto(codigoEstudianteValido));
     }
 
+
+    // Test 3: buscarProductosPorNombreCaseInsensitive
     @Test
     public void buscarProductosPorNombreCaseInsensitive() {
         System.out.println("Test 3: Unit Test - ProductoTest");
-        Producto producto1 = new Producto("12345", "Juan Pérez",
-                "Libro de Java", 20.0, "1234567890",
-                "1 semana");
-        Producto producto2 = new Producto("67890", "María López",
-                "libro de python", 30.0, "9876543210",
-                "1 mes");
+        Producto producto1 = new Producto("123456789", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        Producto producto2 = new Producto("678901234", "María López", "libro de python", 30.0, "9876543210", "1 mes");
 
         Producto.agregarProducto(producto1);
         Producto.agregarProducto(producto2);
 
         List<Producto> resultados = Producto.buscarProductosPorNombre("jaVa");
         assertEquals(1, resultados.size());
-        //assertEquals("Libro de Java", resultados.get(0).getNombreProducto());
+        assertEquals("Libro de Java", resultados.get(0).getNombreProducto());
     }
 
+    // Test 4: buscarProductosPorRangoDePrecios
     @Test
     public void buscarProductosPorRangoDePrecios() {
         System.out.println("Test 4: Unit Test - ProductoTest");
-        Producto producto1 = new Producto("12345", "Juan Pérez",
-                "Libro de Java", 20.0, "1234567890",
-                "1 semana");
-        Producto producto2 = new Producto("67890", "María López",
-                "libro de python", 30.0, "9876543210",
-                "1 mes");
+        Producto producto1 = new Producto("123456789", "Juan Pérez", "Libro de Java", 20.0, "1234567890", "1 semana");
+        Producto producto2 = new Producto("987654321", "María López", "libro de python", 30.0, "9876543210", "1 mes");
 
         Producto.agregarProducto(producto1);
         Producto.agregarProducto(producto2);
@@ -91,6 +88,11 @@ public class ProductoTest {
         resultados = Producto.buscarProductosPorPrecio(25, 30);
         assertEquals(1, resultados.size());
     }
+
+
+
+
+
 
     @Test
     public void crearProductoConExito() {
@@ -156,15 +158,14 @@ public class ProductoTest {
     public void crearProductoSinNumeroContacto() {
         System.out.println("Test 8: Unit Test - ProductoTest");
         try {
-            Producto producto1 = new Producto("2020204759", "Juan Pérez",
-                    "Libro de Java", 20.0, "",
-                    "1 semana");
-            assertFalse(Producto.validarProducto(producto1));
-        }
-        catch (Exception e) {
+            Producto producto1 = new Producto("2020204759", "Juan Pérez", "Libro de Java", 20.0, "", "1 semana");
+            Producto.validarProducto(producto1);  // Esto debería lanzar una excepción
+            fail("Se esperaba una excepción ProductoException debido a la falta del número de contacto");
+        } catch (ProductoException e) {
             System.out.println("Error al validar el producto: " + e.getMessage());
         }
     }
+
     @AfterEach
     public void tearDown() {
         System.out.println("tearDown()");

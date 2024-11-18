@@ -35,12 +35,14 @@ public class ProductoController extends HttpServlet {
             String numeroContacto = request.getParameter("numeroContacto");
             String tiempoVisualizacion = request.getParameter("tiempoVisualizacion");
 
-            // Crea un nuevo producto y lo añade a la lista
-            Producto producto = new Producto(codigoEstudiante, nombreEstudiante,
-                    nombreProducto, precioProducto, numeroContacto, tiempoVisualizacion);
+            // Crear un objeto Producto
+            Producto producto = new Producto(codigoEstudiante, nombreEstudiante, nombreProducto, precioProducto, numeroContacto, tiempoVisualizacion);
+
+            // Validar el producto utilizando el método de validación
+            Producto.validarProducto(producto);  // Si el producto no es válido, lanzará una excepción
             Producto.agregarProducto(producto);
 
-            // Enviar la lista de productos al JSP
+            // Enviar la lista de productos al JSP (si necesitas mostrarla en la vista)
             List<Producto> listaproductos = Producto.obtenerProductos();
             request.setAttribute("listaproductos", listaproductos);
 
@@ -54,6 +56,7 @@ public class ProductoController extends HttpServlet {
                     "\"codigoEstudiante\": \"" + codigoEstudiante + "\"," +
                     "\"tiempoVisualizacion\": \"" + tiempoVisualizacion + "\"" +
                     "}}");
+
         } catch (Exception e) {
             // Si ocurre una excepción, se establece el código de estado HTTP como 500 (Error interno del servidor)
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
